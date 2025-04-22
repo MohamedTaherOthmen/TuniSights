@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GuidePlansListService } from './guide-plans-list.service';
+import { GuidePlansListService } from '../guide-plans-list.service';
 
 describe('GuidePlansListService', () => {
   let service: GuidePlansListService;
