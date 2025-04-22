@@ -12,7 +12,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-
+  //{ path: '**', component: NotfoundComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupHomeComponent },
   { path: 'signup/tourist', component: TouristSignupComponent },
@@ -22,6 +22,7 @@ export const routes: Routes = [
   { path: 'create/plan', component: CreatePlanFormComponent },
 
   { path: 'trash', component: WelcomeComponent },
+  
   //{ path: 'signup', loadComponent: () => import('./components/signup-home/signup-home.component').then(m => m.SignupHomeComponent) },
   //{ path: 'signup/tourist', loadComponent: () => import('./components/tourist-signup/tourist-signup.component').then(m => m.TouristSignupComponent) },
   //{ path: 'signup/guide', loadComponent: () => import('./components/guide-signup/guide-signup.component').then(m => m.GuideSignupComponent) },
