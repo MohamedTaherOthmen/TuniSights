@@ -1,50 +1,354 @@
+/* Dashboard Container */
 .dashboard {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    background: rgb(255, 251, 208); /* New background color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  header {
+  /* Header Styles */
+  .dashboard-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(22, 41, 56, 0.1); /* Subtle border with new dark color */
   }
   
-  .primary-btn {
-    background: #162938;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+  .header-content h1 {
+    color: #162938; /* New dark color */
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Stats Bar */
+  .stats-bar {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+    min-width: 100px;
+  }
+  
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #162938; /* New dark color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .stat-label {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  /* Filter Section */
+  .plans-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #162938; /* New dark color */
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid rgba(22, 41, 56, 0.2); /* Subtle border with new dark color */
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+    background-color: white;
+  }
+  
+  .search-box input:focus {
+    outline: none;
+    border-color: #162938; /* New dark color */
+  }
+  
+  .filter-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .status-filter, .sort-btn {
+    padding: 10px 15px;
+    border: 1px solid rgba(22, 41, 56, 0.2); /* Subtle border with new dark color */
+    border-radius: 6px;
+    background: white;
+    font-size: 0.9rem;
     cursor: pointer;
+    transition: all 0.3s;
   }
   
+  .status-filter {
+    min-width: 150px;
+  }
+  
+  .status-filter:focus, .sort-btn:focus {
+    outline: none;
+    border-color: #162938; /* New dark color */
+  }
+  
+  .sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #162938; /* New dark color */
+  }
+  
+  .sort-btn:hover, .status-filter:hover {
+    background-color: rgba(22, 41, 56, 0.05); /* Very subtle hover */
+  }
+  
+  /* Plans Grid */
   .plans-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
+    margin-bottom: 2rem;
   }
   
+  /* Plan Card */
   .plan-card {
-    border: 1px solid #eee;
+    background: white;
     border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(22, 41, 56, 0.1); /* Subtle border with new dark color */
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-image {
+    position: relative;
+    height: 180px;
     overflow: hidden;
   }
   
-  .plan-card img {
+  .card-image img {
     width: 100%;
-    height: 180px;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .plan-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+  }
+  
+  .card-badge.active {
+    background-color: #28a745;
+  }
+  
+  .card-badge.draft {
+    background-color: #ffc107;
   }
   
   .card-body {
-    padding: 1rem;
+    padding: 1.25rem;
+  }
+  
+  .card-body h3 {
+    margin: 0 0 0.75rem 0;
+    color: #162938; /* New dark color */
+    font-size: 1.25rem;
+  }
+  
+  .description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
   
   .plan-meta {
     display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+  }
+  
+  .plan-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     color: #555;
+  }
+  
+  .plan-meta i {
+    color: #162938; /* New dark color */
+    font-size: 0.8rem;
+  }
+  
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .edit-btn, .delete-btn {
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .edit-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #162938; /* New dark color */
+  }
+  
+  .edit-btn:hover {
+    background-color: rgba(22, 41, 56, 0.05); /* Very subtle hover */
+    border-color: rgba(22, 41, 56, 0.2); /* Subtle border with new dark color */
+  }
+  
+  .delete-btn {
+    background-color: transparent;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+    padding: 8px 12px;
+  }
+  
+  .delete-btn:hover {
+    background-color: rgba(220, 53, 69, 0.05);
+  }
+  
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 2rem;
+    border: 1px dashed rgba(22, 41, 56, 0.2); /* Subtle border with new dark color */
+  }
+  
+  .empty-state i {
+    font-size: 3rem;
+    color: #162938; /* New dark color */
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state h3 {
+    color: #162938; /* New dark color */
+    margin-bottom: 0.5rem;
+  }
+  
+  .empty-state p {
+    color: #666;
+    margin-bottom: 4rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Buttons */
+  .primary-btn {
+    background-color: #162938; /* New dark color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .primary-btn:hover {
+    background-color: #1E3A5A; /* Slightly darker version */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .stats-bar {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .plans-filter {
+      flex-direction: column;
+    }
+    
+    .filter-options {
+      width: 100%;
+    }
+    
+    .status-filter {
+      flex: 1;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard {
+      padding: 1rem;
+    }
+    
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
   }

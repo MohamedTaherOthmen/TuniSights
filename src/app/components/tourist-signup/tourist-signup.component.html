@@ -10,6 +10,7 @@
       <a routerLink="/login" class="tab inactive">Login</a>
       <a routerLink="/signup" class="tab active">SignUp</a>
     </div>
+    <p>{{ country }}</p>
 
     <form class="signup-form">
       
@@ -23,8 +24,10 @@
             id="first_name" 
             name="first_name" 
             placeholder="Enter your first name"
+            [(ngModel)]="first_name" 
             required
           >
+          <p *ngIf="inputsError.first_nameError" class="error">Please enter your first name</p>
         </div>
         
         <div class="form-group">
@@ -34,8 +37,10 @@
             id="last_name" 
             name="last_name" 
             placeholder="Enter your last name"
+            [(ngModel)]="last_name" 
             required
           >
+          <p *ngIf="inputsError.last_nameError" class="error">Please enter your last name</p>
         </div>
 
       </div>
@@ -48,8 +53,12 @@
           id="email" 
           name="email" 
           placeholder="example@email.com"
+          [(ngModel)]="email" 
           required
         >
+        <p *ngIf="inputsError.emailError" class="error">
+          {{ !email ? 'Please enter your Email' : 'Please check your email format !' }}
+        </p>
       </div>
       
       <!-- Phone Number Field -->
@@ -60,7 +69,11 @@
           id="phone_number" 
           name="phone_number" 
           placeholder="+216 12 345 678"
+          [(ngModel)]="phone"
         >
+        <p *ngIf="inputsError.phoneError" class="error">
+          {{ !phone ? 'Please enter your phone number' : 'Please check your phone number format !' }}
+        </p>
         <div class="hint-text">Include your country code (e.g., +216 for Tunisia)</div>
       </div>
       
@@ -70,12 +83,14 @@
         <select 
           id="country" 
           name="country" 
+          [(ngModel)]="country"
           required
         >
           <option value="" disabled selected>Select your country</option>
           <option *ngFor="let country of countries" [value]="country">
             {{ country }}
           </option>
+          <p *ngIf="inputsError.countryError" class="error">Please select your country</p>
         </select>
       </div>
       
@@ -88,9 +103,14 @@
             id="password" 
             name="password" 
             placeholder="Create a secure password"
+            [(ngModel)]="password"
             required
           >
+          <p *ngIf="inputsError.passwordError" class="error">
+            {{ !password ? 'Please enter a password' : 'Password must be at least 8 characters long, include 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9), and 1 special character (!@#$%^&*) !' }}
+          </p>
         </div>
+
       </div>
       
       <!-- Confirm Password Field -->
@@ -102,13 +122,17 @@
             id="confirm_password" 
             name="confirm_password" 
             placeholder="Confirm your password"
+            [(ngModel)]="confirm_password"
             required
           >
         </div>
+        <p *ngIf="inputsError.confirm_passwordError" class="error">
+          {{ !confirm_password ? 'Please confirm your password' : 'Your confirmation password must exactly match the original password !' }}
+        </p>
       </div>
       
       <!-- Submit Button -->
-      <button type="submit" class="submit-btn">
+      <button (click)="add_new_tourist()" type="submit" class="submit-btn">
         <span>Create Account</span>
       </button>
 

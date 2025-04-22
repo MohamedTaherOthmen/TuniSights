@@ -9,7 +9,8 @@
       <a routerLink="/signup" class="tab inactive">SignUp</a>
     </div>
 
-    <form class="login-form" (ngSubmit)='onSubmit()'>
+    <form class="login-form">
+
       <div class="form-group">
         <span class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -21,7 +22,7 @@
           id="email"
           name="email"
           required
-          [(ngModel)]="email">
+          placeholder="">
         <label for="email">Email</label>
       </div>
 
@@ -36,7 +37,7 @@
           id="password" 
           name="password"
           required
-          [(ngModel)]="password">
+          placeholder="">
         <label for="password">Password</label>
       </div>
 
@@ -48,7 +49,7 @@
         </label>
       </div>
 
-      <button type="submit" class="login-btn">
+      <button routerLink="/guide/dashboard" type="submit" class="login-btn">
         LOGIN
       </button>
 

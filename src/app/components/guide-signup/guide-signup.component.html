@@ -10,7 +10,7 @@
       <a routerLink="/signup" class="tab active">SignUp</a>
     </div>
 
-    <form class="signup-form" (ngSubmit)="onSubmit()">
+    <form class="signup-form">
       
       <!-- Name Fields (Side by Side) -->
       <div class="form-row">
@@ -22,7 +22,6 @@
             name="first_name"
             required
             placeholder="Enter your first name"
-            [(ngModel)] = "first_name"
           > 
         </div>
 
@@ -34,7 +33,6 @@
             name="last_name" 
             required
             placeholder="Enter your last name"
-            [(ngModel)] = "last_name"
           >
         </div>
       </div>
@@ -48,7 +46,6 @@
           name="email" 
           required
           placeholder="example@domain.com"
-          [(ngModel)] = "email"
         >
       </div>
 
@@ -60,7 +57,6 @@
           id="phone_number" 
           name="phone_number" 
           placeholder="+(255) 99 999 999"
-          [(ngModel)] = "phone_number"
         >
       </div>
 
@@ -71,7 +67,6 @@
           id="city" 
           name="city" 
           required
-          [(ngModel)]="city"
         >
           <option value="" disabled selected></option>
           <option *ngFor="let city of cities" [value]="city">
@@ -87,7 +82,6 @@
           id="language_spoken" 
           name="language_spoken" 
           required
-          [(ngModel)]="language"
         >
           <option value="" disabled selected></option>
           <option *ngFor="let language of languages" [value]="language">
@@ -103,7 +97,6 @@
           id="bio" 
           name="bio" 
           rows="4"
-          [(ngModel)]="bio"
           placeholder="Tell tourists about your background, expertise, and what makes you a great guide"
         ></textarea>
       </div>
@@ -118,7 +111,6 @@
             name="experience_years" 
             min="0"
             max="50"
-            [(ngModel)]="experience_years"
             placeholder="e.g. 3"
           >
         </div>
@@ -129,7 +121,6 @@
             type="url" 
             id="profile_picture_url" 
             name="profile_picture_url"
-            [(ngModel)]='profile_picture_url'
             placeholder="Enter a URL for your profile picture"
           >
         </div>
@@ -144,7 +135,6 @@
             id="password" 
             name="password" 
             required
-            [(ngModel)]='password'
           >
         </div>
         <div class="hint-text">

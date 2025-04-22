@@ -221,6 +221,10 @@ header {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
   }
+
+  .tour-card:hover .card-image {
+    transform: scale(1.05);
+  }
   
   .card-image {
     /*background: rgb(255, 253, 234);*/
@@ -229,6 +233,7 @@ header {
     background-size: cover;
     background-position: center;
     position: relative;
+    transition: transform 0.5s;
   }
   
   .card-badge {

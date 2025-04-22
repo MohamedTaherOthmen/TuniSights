@@ -140,3 +140,11 @@ input::placeholder {
 .link:hover {
   text-decoration: underline;
 }
+
+/*ERRORS*/
+  
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
