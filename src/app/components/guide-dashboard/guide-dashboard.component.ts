@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { CreatePlanFormComponent } from '../create-plan-form/create-plan-form.component';
-import { GuidePlansListService } from '../../guide-plans-list.service';
+import { GuidePlansListService } from '../../services/guide-plans-list.service';
 
 
 @Component({

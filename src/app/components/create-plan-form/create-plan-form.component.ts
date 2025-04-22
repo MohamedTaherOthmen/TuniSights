@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { GuidePlansListService } from '../../guide-plans-list.service';
+import { GuidePlansListService } from '../../services/guide-plans-list.service';
 import { RouterModule } from '@angular/router';
 
 

@@ -35,7 +35,13 @@ export class LoginComponent {
       next : response =>{
         if (response.success == true){
           this.snackBar.open('Welcome to TuniSights ', 'thanks !', {duration: 3000});
-          this.router.navigate(['/welcome']);
+          if (response.user.type == 'guide'){
+            this.router.navigate(['/guide/dashboard']);
+          }/*else {
+            if (response.user.type == 'tourist'){
+              this.router.navigate(['/tourist/dashboard']);
+            }
+          }*/
         }else{
           this.snackBar.open(response.message || 'Sorry! Login failed !', 'close', {duration : 3000});
           this.router.navigate(['/signup']);

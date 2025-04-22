@@ -9,7 +9,7 @@
       <a routerLink="/signup" class="tab inactive">SignUp</a>
     </div>
 
-    <form class="login-form">
+    <form class="login-form" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
         <span class="icon">
@@ -51,7 +51,7 @@
         </label>
       </div>
 
-      <button routerLink="/guide/dashboard" type="submit" class="login-btn">
+      <button type="submit" class="login-btn">
         LOGIN
       </button>
 
