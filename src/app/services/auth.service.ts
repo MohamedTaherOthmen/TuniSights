@@ -15,7 +15,11 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login.php`, data);
   }
 
-  signup(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/signup.php`, data);
+  signuptourist(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/signuptourist.php`, data);
+  }
+
+  signupguide(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/signupguide.php`, data);
   }
 }

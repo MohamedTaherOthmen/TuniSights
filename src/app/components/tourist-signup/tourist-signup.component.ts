@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tourist-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    MatSnackBarModule
+  ],
   templateUrl: './tourist-signup.component.html',
   styleUrls: ['./tourist-signup.component.css']
 })
@@ -86,7 +94,38 @@ export class TouristSignupComponent {
       this.login = true;
     }
   }
-  
-    
 
+  constructor(
+    private authSer: AuthService,
+    private route: Router,
+    private snackBar: MatSnackBar
+  ){}
+
+  onSubmit(){
+    this.authSer.signuptourist({
+      first_name: this.first_name,
+      last_name: this.last_name,
+      email: this.email,
+      phone_number: this.phone,
+      country: this.country,
+      password: this.password
+    }).subscribe({
+      next: response => {
+        if (response.success){  
+          console.log(response.message);
+          this.snackBar.open('Account Created Succesfully', 'close', {duration:3000});
+          this.route.navigate(['/login']);
+        }else{
+          console.log(response.message);
+          this.snackBar.open('Error While Creating Account', 'close', {duration:3000});
+          this.route.navigate(['/signup/guide']);
+        }
+      },
+      error : error =>{
+        console.log(error.message);
+        this.snackBar.open('Error Occured while Creating Account', 'close', {duration:3000});
+        this.route.navigate(['/signup/guide']);
+      }
+    })
+  }
 } 
