@@ -1,0 +1,77 @@
+<div class="login-container">
+
+<div class="wrapper">
+
+  <div class="form-box">
+    
+    <div class="tabs">
+      <a routerLink="/login" class="tab active">Login</a>
+      <a routerLink="/signup" class="tab inactive">SignUp</a>
+    </div>
+
+    <form class="login-form">
+
+      <div class="form-group">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+          </svg>
+        </span>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          required
+          placeholder="">
+        <label for="email">Email</label>
+      </div>
+
+      <div class="form-group">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+          </svg>
+        </span>
+        <input 
+          type="password" 
+          id="password" 
+          name="password"
+          required
+          placeholder="">
+        <label for="password">Password</label>
+      </div>
+
+      <div class="terms-group">
+        <label class="checkbox-container">
+          <input type="checkbox" required>
+          <span class="checkmark"></span>
+          I accept the terms and conditions
+        </label>
+      </div>
+
+      <button type="submit" class="login-btn">
+        LOGIN
+      </button>
+
+      <div class="forgot-password">
+        <a>Forgot Password</a>
+      </div>
+
+      <div class="form-links">
+        <a routerLink="/welcome" class="link">&larr; Back to home page</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Add this new image section -->
+  <div class="image-box">
+    <div class="image-text">
+      <h1>Responsible Travel Experiences</h1>
+      <h2>Guided by locals</h2>
+      <p>Log in to book unique memorable<br>travel experiences</p>
+    </div>
+  </div>
+  
+</div>
+</div> 

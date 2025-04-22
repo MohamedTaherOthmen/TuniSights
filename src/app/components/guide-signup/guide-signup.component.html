@@ -1,0 +1,170 @@
+<div class="signup-container">
+
+  <div class="form-box">
+
+    <h1>Guide Registration</h1>
+    <p class="subtitle">Share your expertise and guide travelers in Tunisia</p>
+
+    <div class="tabs">
+      <a routerLink="/login" class="tab inactive">Login</a>
+      <a routerLink="/signup" class="tab active">SignUp</a>
+    </div>
+
+    <form class="signup-form">
+      
+      <!-- Name Fields (Side by Side) -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first_name">First Name *</label>
+          <input 
+            type="text" 
+            id="first_name" 
+            name="first_name"
+            required
+            placeholder="Enter your first name"
+          > 
+        </div>
+
+        <div class="form-group">
+          <label for="last_name">Last Name *</label>
+          <input 
+            type="text" 
+            id="last_name" 
+            name="last_name" 
+            required
+            placeholder="Enter your last name"
+          >
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
+          placeholder="example@domain.com"
+        >
+      </div>
+
+      <!-- Phone Number Field -->
+      <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input 
+          type="tel" 
+          id="phone_number" 
+          name="phone_number" 
+          placeholder="+(255) 99 999 999"
+        >
+      </div>
+
+      <!-- City Field -->
+      <div class="form-group">
+        <label for="city">City *</label>
+        <select 
+          id="city" 
+          name="city" 
+          required
+        >
+          <option value="" disabled selected></option>
+          <option *ngFor="let city of cities" [value]="city">
+            {{ city }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Language Field -->
+      <div class="form-group">
+        <label for="language_spoken">Primary Language *</label>
+        <select 
+          id="language_spoken" 
+          name="language_spoken" 
+          required
+        >
+          <option value="" disabled selected></option>
+          <option *ngFor="let language of languages" [value]="language">
+            {{ language }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Bio Field -->
+      <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea 
+          id="bio" 
+          name="bio" 
+          rows="4"
+          placeholder="Tell tourists about your background, expertise, and what makes you a great guide"
+        ></textarea>
+      </div>
+
+      <!-- Experience & Profile Picture Fields (Side by Side) -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="experience_years">Years of Experience</label>
+          <input 
+            type="number" 
+            id="experience_years" 
+            name="experience_years" 
+            min="0"
+            max="50"
+            placeholder="e.g. 3"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="profile_picture_url">Profile Picture URL</label>
+          <input 
+            type="url" 
+            id="profile_picture_url" 
+            name="profile_picture_url"
+            placeholder="Enter a URL for your profile picture"
+          >
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <div class="password-input">
+          <label for="password">Password *</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required
+          >
+        </div>
+        <div class="hint-text">
+          Password must be at least 8 characters with uppercase, lowercase, number, and special character
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <div class="password-input">
+          <label for="confirm_password">Confirm Password *</label>
+          <input 
+            type="password" 
+            id="confirm_password" 
+            name="confirm_password" 
+            required
+          >
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">
+        <span>Create Account</span>
+      </button>
+
+      <a routerLink="/login" class="link" style="text-align: center;">Already have an account? Login</a>
+
+      <div class="form-links">
+        <a routerLink="/welcome" class="link home">&larr; Back to home page</a>
+      </div>
+    </form>
+  </div>
+</div>
