@@ -8,9 +8,6 @@ import { GuideDashboardComponent } from './components/guide-dashboard/guide-dash
 import { CreatePlanFormComponent } from './components/create-plan-form/create-plan-form.component';
 import { ExplorePlansComponent } from './components/explore-plans/explore-plans.component';
 
-import { WelcomeComponent } from './components/welcome/welcome.component';
-
-
 export const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   //{ path: '**', component: NotfoundComponent},
@@ -22,8 +19,6 @@ export const routes: Routes = [
   { path: 'guide/dashboard', component: GuideDashboardComponent },
   { path: 'create/plan', component: CreatePlanFormComponent },
   { path: 'explore', component: ExplorePlansComponent },
-
-  { path: 'trash', component: WelcomeComponent },
   
   //{ path: 'signup', loadComponent: () => import('./components/signup-home/signup-home.component').then(m => m.SignupHomeComponent) },
   //{ path: 'signup/tourist', loadComponent: () => import('./components/tourist-signup/tourist-signup.component').then(m => m.TouristSignupComponent) },
