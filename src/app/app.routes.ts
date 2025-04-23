@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { WelcomeeComponent } from './components/welcomee/welcomee.component';
 import { GuideDashboardComponent } from './components/guide-dashboard/guide-dashboard.component';
 import { CreatePlanFormComponent } from './components/create-plan-form/create-plan-form.component';
+import { ExplorePlansComponent } from './components/explore-plans/explore-plans.component';
 
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'welcome', component: WelcomeeComponent },
   { path: 'guide/dashboard', component: GuideDashboardComponent },
   { path: 'create/plan', component: CreatePlanFormComponent },
+  { path: 'explore', component: ExplorePlansComponent },
 
   { path: 'trash', component: WelcomeComponent },
   

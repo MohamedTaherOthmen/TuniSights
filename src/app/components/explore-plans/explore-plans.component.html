@@ -1,0 +1,84 @@
+<div class="explore-container">
+    <!-- Search and Filters -->
+    <div class="filters-section">
+      <div class="search-box">
+        <input [(ngModel)]="searchTerm" placeholder="Search tours...">
+        <i class="fas fa-search"></i>
+      </div>
+  
+      <div class="filter-group">
+        <select [(ngModel)]="selectedCity">
+          <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+        </select>
+      </div>
+  
+      <div class="filter-group">
+        <label>Max Price: ${{maxPrice}}</label>
+        <input type="range" [(ngModel)]="maxPrice" min="50" max="1000" step="50">
+      </div>
+    </div>
+  
+    <!-- Highlights Section -->
+    <div class="highlights-section" *ngIf="highlightedTours.length">
+      <h2><i class="fas fa-star"></i> Featured Tours</h2>
+      <div class="tours-grid">
+        <div *ngFor="let tour of highlightedTours" class="tour-card" (click)="selectTour(tour)">
+          <img [src]="tour.image" [alt]="tour.title">
+          <div class="tour-info">
+            <h3>{{tour.title}}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
+            <div class="tour-meta">
+              <span>${{tour.price}}</span>
+              <span>{{tour.duration}} days</span>
+              <span>{{tour.rating}} <i class="fas fa-star"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- All Tours -->
+    <div class="all-tours-section">
+      <h2><i class="fas fa-globe-africa"></i> All Tours</h2>
+      <div class="tours-grid">
+        <div *ngFor="let tour of filteredTours" class="tour-card" (click)="selectTour(tour)">
+          <img [src]="tour.image" [alt]="tour.title">
+          <div class="tour-info">
+            <h3>{{tour.title}}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
+            <div class="tour-meta">
+              <span>${{tour.price}}</span>
+              <span>{{tour.duration}} days</span>
+              <span>{{tour.rating}} <i class="fas fa-star"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Booking Modal -->
+    <div *ngIf="selectedTour" class="booking-modal">
+      <div class="modal-content">
+        <h2>Book {{selectedTour.title}}</h2>
+        
+        <div class="form-group">
+          <label>Start Date</label>
+          <input type="date" [(ngModel)]="bookingDates.start">
+        </div>
+  
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <input type="number" [(ngModel)]="bookingDates.guests" min="1" max="10">
+        </div>
+  
+        <div class="price-summary">
+          <p>Total: <strong>${{selectedTour.price * bookingDates.guests}}</strong></p>
+        </div>
+  
+        <div class="modal-actions">
+          <button (click)="selectedTour = null">Cancel</button>
+          <button (click)="bookTour()">Confirm & Pay</button>
+        </div>
+      </div>
+    </div>
+  </div>

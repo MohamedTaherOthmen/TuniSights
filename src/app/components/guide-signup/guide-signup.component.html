@@ -24,6 +24,7 @@
             placeholder="Enter your first name"
             [(ngModel)] = "first_name"
           > 
+          <p *ngIf="inputsError.first_nameError" class="error">Please enter your first name</p>
         </div>
 
         <div class="form-group">
@@ -36,6 +37,7 @@
             placeholder="Enter your last name"
             [(ngModel)] = "last_name"
           >
+          <p *ngIf="inputsError.last_nameError" class="error">Please enter your last name</p>
         </div>
       </div>
 
@@ -50,6 +52,9 @@
           placeholder="example@domain.com"
           [(ngModel)] = "email"
         >
+        <p *ngIf="inputsError.emailError" class="error">
+          {{ !email ? 'Please enter your Email' : 'Please check your email format !' }}
+        </p>
       </div>
 
       <!-- Phone Number Field -->
@@ -62,6 +67,9 @@
           placeholder="+(255) 99 999 999"
           [(ngModel)] = "phone_number"
         >
+        <p *ngIf="inputsError.phoneError" class="error">
+          {{ !phone_number ? 'Please enter your phone number' : 'Please check your phone number format !' }}
+        </p>
       </div>
 
       <!-- City Field -->
@@ -78,6 +86,7 @@
             {{ city }}
           </option>
         </select>
+        <p *ngIf="inputsError.cityError" class="error">Please select your city</p>
       </div>
 
       <!-- Language Field -->
@@ -94,6 +103,7 @@
             {{ language }}
           </option>
         </select>
+        <p *ngIf="inputsError.languageError" class="error">Please select your primary language</p>
       </div>
 
       <!-- Bio Field -->
@@ -106,6 +116,9 @@
           [(ngModel)]="bio"
           placeholder="Tell tourists about your background, expertise, and what makes you a great guide"
         ></textarea>
+        <p *ngIf="inputsError.bioError" class="error">
+          {{ !bio ? 'Please enter your bio' : 'Bio must be at least 100 characters long !' }}
+        </p>
       </div>
 
       <!-- Experience & Profile Picture Fields (Side by Side) -->
@@ -147,6 +160,9 @@
             [(ngModel)]='password'
           >
         </div>
+        <p *ngIf="inputsError.passwordError" class="error">
+          {{ !password ? 'Please enter a password' : 'Password must be at least 8 characters long, include 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9), and 1 special character (!@#$%^&*) !' }}
+        </p>
         <div class="hint-text">
           Password must be at least 8 characters with uppercase, lowercase, number, and special character
         </div>
@@ -161,8 +177,12 @@
             id="confirm_password" 
             name="confirm_password" 
             required
+            [(ngModel)]='confirm_password'
           >
         </div>
+        <p *ngIf="inputsError.confirm_passwordError" class="error">
+          {{ !confirm_password ? 'Please confirm your password' : 'Your confirmation password must exactly match the original password !' }}
+        </p>
       </div>
 
       <!-- Submit Button -->

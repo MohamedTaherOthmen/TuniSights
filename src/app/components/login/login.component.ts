@@ -37,11 +37,11 @@ export class LoginComponent {
           this.snackBar.open('Welcome to TuniSights ', 'thanks !', {duration: 3000});
           if (response.user.type == 'guide'){
             this.router.navigate(['/guide/dashboard']);
-          }/*else {
+          }else {
             if (response.user.type == 'tourist'){
-              this.router.navigate(['/tourist/dashboard']);
+              this.router.navigate(['/explore']);
             }
-          }*/
+          }
         }else{
           this.snackBar.open(response.message || 'Sorry! Login failed !', 'close', {duration : 3000});
           this.router.navigate(['/signup']);

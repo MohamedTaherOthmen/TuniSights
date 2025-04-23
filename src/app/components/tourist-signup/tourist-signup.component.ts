@@ -53,8 +53,6 @@ export class TouristSignupComponent {
     'Other'
   ];
 
-  login = false;
-
   //initialise error variables
   inputsError = {
 
@@ -69,7 +67,13 @@ export class TouristSignupComponent {
   }
   
 
-  add_new_tourist() {
+  constructor(
+    private authSer: AuthService,
+    private route: Router,
+    private snackBar: MatSnackBar
+  ){}
+
+  onSubmit() {
 
     //check inputs
     this.inputsError.first_nameError = false;
@@ -91,17 +95,35 @@ export class TouristSignupComponent {
     
 
     if (!this.inputsError.first_nameError && !this.inputsError.last_nameError && !this.inputsError.emailError && !this.inputsError.phoneError && !this.inputsError.countryError && !this.inputsError.passwordError && !this.inputsError.confirm_passwordError) {
-      this.login = true;
+      this.authSer.signuptourist({
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        phone_number: this.phone,
+        country: this.country,
+        password: this.password
+      }).subscribe({
+        next: response => {
+          if (response.success){  
+            console.log(response.message);
+            this.snackBar.open('Account Created Succesfully', 'close', {duration:3000});
+            this.route.navigate(['/login']);
+          }else{
+            console.log(response.message);
+            this.snackBar.open('Error While Creating Account', 'close', {duration:3000});
+            this.route.navigate(['/signup/guide']);
+          }
+        },
+        error : error =>{
+          console.log(error.message);
+          this.snackBar.open('Error Occured while Creating Account', 'close', {duration:3000});
+          this.route.navigate(['/signup/guide']);
+        }
+      })
     }
   }
 
-  constructor(
-    private authSer: AuthService,
-    private route: Router,
-    private snackBar: MatSnackBar
-  ){}
-
-  onSubmit(){
+  /*onSubmit(){
     this.authSer.signuptourist({
       first_name: this.first_name,
       last_name: this.last_name,
@@ -127,5 +149,5 @@ export class TouristSignupComponent {
         this.route.navigate(['/signup/guide']);
       }
     })
-  }
+  }*/
 } 
