@@ -89,12 +89,14 @@ export class TouristSignupComponent {
     if (!this.last_name) this.inputsError.last_nameError = true;
     if (!this.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) this.inputsError.emailError = true;
     if (!this.phone || !/^\+\d{1,4}\d{7,15}$/.test(this.phone)) this.inputsError.phoneError = true;
-    if (this.country) this.inputsError.countryError = true;
+    if (!this.country) this.inputsError.countryError = true;
     if (!this.password || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(this.password)) this.inputsError.passwordError = true;
     if (!this.password || this.password !== this.confirm_password) this.inputsError.confirm_passwordError = true;
     
 
-    if (!this.inputsError.first_nameError && !this.inputsError.last_nameError && !this.inputsError.emailError && !this.inputsError.phoneError && !this.inputsError.countryError && !this.inputsError.passwordError && !this.inputsError.confirm_passwordError) {
+    if ( !this.inputsError.first_nameError && !this.inputsError.last_nameError 
+      && !this.inputsError.emailError && !this.inputsError.phoneError 
+      && !this.inputsError.countryError && !this.inputsError.passwordError && !this.inputsError.confirm_passwordError) {
       this.authSer.signuptourist({
         first_name: this.first_name,
         last_name: this.last_name,
