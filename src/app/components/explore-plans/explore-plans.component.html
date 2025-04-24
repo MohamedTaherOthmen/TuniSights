@@ -1,6 +1,71 @@
+<!-- Added Navigation Bar -->
+<nav class="tourist-navbar">
+  <div class="navbar-brand">
+    <h2>TuniSights</h2>
+  </div>
+
+  <!-- Added Search Field -->
+  <div class="navbar-search">
+
+    <input type="text" placeholder="Search tours, cities...">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+
+    <!-- Add this filter button -->
+    <button (click)=" filter_btn_state = !filter_btn_state " [ngClass]=" { 'filter-btn-inactiv': !filter_btn_state, 'filter-btn-activ': filter_btn_state } ">
+      <i class="fas fa-sliders-h fa-lg"></i>
+    </button>
+
+  </div> 
+  
+  <div class="navbar-links">
+    <a routerLink="/tourist/dashboard" class="nav-link">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a routerLink="/tourist/bookings" class="nav-link">
+      <i class="fas fa-calendar-check"></i> My Bookings
+    </a>
+    <a routerLink="/tourist/wishlist" class="nav-link">
+      <i class="fas fa-heart"></i> Wishlist
+    </a>
+  </div>
+  
+  <div class="navbar-user">
+    <div class="user-dropdown">
+      <button class="user-btn">
+        <i class="fas fa-user-circle"></i> My Profile
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/tourist/profile"><i class="fas fa-user"></i> Profile</a>
+        <a routerLink="/tourist/settings"><i class="fas fa-cog"></i> Settings</a>
+        <a routerLink="/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+    <div class="notification-bell">
+      <i class="fas fa-bell"></i>
+      <span class="badge">3</span>
+    </div>
+  </div>
+</nav>
+
+
 <div class="explore-container">
+
+    <!-- Header -->
+    <header class="explore-header">
+      <h1><i class="fas fa-map-marked-alt"></i> </h1>
+    </header>
+
+    <!-- New Welcome Message -->
+    <div class="welcome-message">
+      <h2>Welcome back Explorer !</h2>
+      <p>Ready for your next adventure ?</p>
+    </div>
+
     <!-- Search and Filters -->
-    <div class="filters-section">
+    <div class="filters-section" *ngIf=" filter_btn_state ">
+
       <div class="search-box">
         <input [(ngModel)]="searchTerm" placeholder="Search tours...">
         <i class="fas fa-search"></i>
@@ -16,69 +81,75 @@
         <label>Max Price: ${{maxPrice}}</label>
         <input type="range" [(ngModel)]="maxPrice" min="50" max="1000" step="50">
       </div>
+      
     </div>
-  
-    <!-- Highlights Section -->
-    <div class="highlights-section" *ngIf="highlightedTours.length">
-      <h2><i class="fas fa-star"></i> Featured Tours</h2>
-      <div class="tours-grid">
-        <div *ngFor="let tour of highlightedTours" class="tour-card" (click)="selectTour(tour)">
-          <img [src]="tour.image" [alt]="tour.title">
-          <div class="tour-info">
-            <h3>{{tour.title}}</h3>
-            <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
-            <div class="tour-meta">
-              <span>${{tour.price}}</span>
-              <span>{{tour.duration}} days</span>
-              <span>{{tour.rating}} <i class="fas fa-star"></i></span>
+    
+    <div class="tours-container">
+
+      <!-- Highlights Section -->
+      <div class="highlights-section" *ngIf="highlightedTours.length">
+        <h2><i class="fas fa-star"></i> Featured Tours</h2>
+        <div class="tours-grid">
+          <div *ngFor="let tour of highlightedTours" class="tour-card" (click)="selectTour(tour)">
+            <img [src]="tour.image" [alt]="tour.title">
+            <div class="tour-info">
+              <h3>{{tour.title}}</h3>
+              <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
+              <div class="tour-meta">
+                <span>${{tour.price}}</span>
+                <span>{{tour.duration}} days</span>
+                <span>{{tour.rating}} <i class="fas fa-star"></i></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <!-- All Tours -->
-    <div class="all-tours-section">
-      <h2><i class="fas fa-globe-africa"></i> All Tours</h2>
-      <div class="tours-grid">
-        <div *ngFor="let tour of filteredTours" class="tour-card" (click)="selectTour(tour)">
-          <img [src]="tour.image" [alt]="tour.title">
-          <div class="tour-info">
-            <h3>{{tour.title}}</h3>
-            <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
-            <div class="tour-meta">
-              <span>${{tour.price}}</span>
-              <span>{{tour.duration}} days</span>
-              <span>{{tour.rating}} <i class="fas fa-star"></i></span>
+    
+      <!-- All Tours -->
+      <div class="all-tours-section">
+        <h2><i class="fas fa-globe-africa"></i> All Tours</h2>
+        <div class="tours-grid">
+          <div *ngFor="let tour of filteredTours" class="tour-card" (click)="selectTour(tour)">
+            <img [src]="tour.image" [alt]="tour.title">
+            <div class="tour-info">
+              <h3>{{tour.title}}</h3>
+              <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
+              <div class="tour-meta">
+                <span>${{tour.price}}</span>
+                <span>{{tour.duration}} days</span>
+                <span>{{tour.rating}} <i class="fas fa-star"></i></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <!-- Booking Modal -->
-    <div *ngIf="selectedTour" class="booking-modal">
-      <div class="modal-content">
-        <h2>Book {{selectedTour.title}}</h2>
-        
-        <div class="form-group">
-          <label>Start Date</label>
-          <input type="date" [(ngModel)]="bookingDates.start">
-        </div>
-  
-        <div class="form-group">
-          <label>Number of Guests</label>
-          <input type="number" [(ngModel)]="bookingDates.guests" min="1" max="10">
-        </div>
-  
-        <div class="price-summary">
-          <p>Total: <strong>${{selectedTour.price * bookingDates.guests}}</strong></p>
-        </div>
-  
-        <div class="modal-actions">
-          <button (click)="selectedTour = null">Cancel</button>
-          <button (click)="bookTour()">Confirm & Pay</button>
+    
+      <!-- Booking Modal -->
+      <div *ngIf="selectedTour" class="booking-modal">
+        <div class="modal-content">
+          <h2>Book {{selectedTour.title}}</h2>
+          
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" [(ngModel)]="bookingDates.start">
+          </div>
+    
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <input type="number" [(ngModel)]="bookingDates.guests" min="1" max="10">
+          </div>
+    
+          <div class="price-summary">
+            <p>Total: <strong>${{selectedTour.price * bookingDates.guests}}</strong></p>
+          </div>
+    
+          <div class="modal-actions">
+            <button (click)="selectedTour = null">Cancel</button>
+            <button (click)="bookTour()">Confirm & Pay</button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+
+    </div>  
+
+</div>

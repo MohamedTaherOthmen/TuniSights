@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-explore-plans',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './explore-plans.component.html',
   styleUrl: './explore-plans.component.css'
 })
 export class ExplorePlansComponent {
 
+
+  filter_btn_state = false;
 
   // Sample tour data
   tours = [
