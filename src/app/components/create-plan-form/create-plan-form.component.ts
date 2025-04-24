@@ -50,7 +50,7 @@ export class CreatePlanFormComponent {
     if (!this.titleError && !this.descriptionError && !this.priceError && !this.durationError) {
       const guide_id = localStorage.getItem('guide_id');
 
-      this.http.post<any>('http://localhost/api/createplanguides.php', {
+      this.http.post<any>(`http://localhost/api/createplanguides.php?guide_id=${guide_id}`, {
         title: this.title,
         description: this.description,
         price: this.price,

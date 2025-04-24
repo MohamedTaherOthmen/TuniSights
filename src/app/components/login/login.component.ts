@@ -33,13 +33,17 @@ export class LoginComponent {
       password: this.password
     }).subscribe({
       next : response =>{
-        if (response.success == true){
+        if (response.success){
           this.snackBar.open('Welcome to TuniSights ', 'thanks !', {duration: 3000});
           if (response.user.type == 'guide'){
             this.router.navigate(['/guide/dashboard']);
+            localStorage.setItem('guide_id', response.user.id);
+            localStorage.setItem('guide_name', response.user.name);
           }else {
             if (response.user.type == 'tourist'){
               this.router.navigate(['/explore']);
+              localStorage.setItem('tourist_id', response.user.id);
+              localStorage.setItem('tourist_name', response.user.name);
             }
           }
         }else{

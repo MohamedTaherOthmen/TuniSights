@@ -7,7 +7,7 @@
         
         <div class="stats-bar">
           <div class="stat-item">
-            <div class="stat-value">{{ _s.plans_list.length }}</div>
+            <div class="stat-value">{{planList.length }}</div>
             <div class="stat-label">Total Plans</div>
           </div>
           <div class="stat-item">
@@ -21,14 +21,13 @@
         </div>
       </div>
       
-      <button  class="primary-btn">
-        <i class="fas fa-sign-out-alt"></i> Logout
+      <button (click)="logout()" class="primary-btn">
+        <i class="fas fa-plus"></i> Logout
       </button>
 
       <button routerLink="/create/plan" class="primary-btn">
         <i class="fas fa-plus"></i> New Plan
       </button>
-
     </header>
   
     <!-- Plans Filter -->
@@ -54,32 +53,32 @@
   
     <!-- Plans Grid -->
     <div class="plans-grid">
-      <div *ngFor="let item of _s.plans_list" class="plan-card">
+      <div *ngFor="let plan of planList" class="plan-card">
         <div class="card-image">
-          <img [src]="item.image" [alt]="item.title">
+          <img [src]='plan.image_url' [alt]='plan.plan_name'>
           <div class="card-badge" [ngClass]="{
-            'active': item.status === 'active',
-            'draft': item.status === 'draft'
+            'active': plan.status === 'active',
+            'draft': plan.status === 'draft'
           }">
-            {{ item.status | titlecase }}
+            {{ plan.status | titlecase }}
           </div>
         </div>
         
         <div class="card-body">
-          <h3>{{ item.title }}</h3>
-          <p class="description">{{ item.description }}</p>
+          <h3>{{ plan.plan_name }}</h3>
+          <p class="description">{{ plan.description }}</p>
           
           <div class="plan-meta">
-            <span><i class="fas fa-dollar-sign"></i> {{ item.price }}/person</span>
-            <span><i class="fas fa-calendar-day"></i> {{ item.duration }} days</span>
-            <span><i class="fas fa-users"></i> Max {{ item.max_people || 12 }}</span>
+            <span><i class="fas fa-dollar-sign"></i> {{ plan.price }}/person</span>
+            <span><i class="fas fa-calendar-day"></i> {{ plan.duration }} days</span>
+            <span><i class="fas fa-users"></i> Max {{ plan.max_people || 12 }}</span>
           </div>
           
           <div class="card-actions">
-            <button class="edit-btn" (click)="edit_plan()">
+            <button (click)="edit_plan(plan.id)" class="edit-btn" >
               <i class="fas fa-edit"></i> Edit
             </button>
-            <button class="delete-btn" (click)="delete_plan()">
+            <button (click)="delete_plan(plan.id)" class="delete-btn">
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
@@ -88,7 +87,7 @@
     </div>
   
     <!-- Empty State -->
-    <div *ngIf="_s.plans_list.length === 0" class="empty-state">
+    <div *ngIf="planList.length === 0" class="empty-state">
       <i class="fas fa-map"></i>
       <h3>No Tour Plans Yet</h3>
       <p>Create your first tour plan to start attracting travelers</p>

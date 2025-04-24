@@ -73,7 +73,6 @@ export class GuideSignupComponent {
   ){}
 
   onSubmit() {
-
     //check inputs
     this.inputsError.first_nameError = false;
     this.inputsError.last_nameError = false;

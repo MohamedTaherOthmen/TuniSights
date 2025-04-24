@@ -59,6 +59,15 @@ export class GuideDashboardComponent {
     this.loadPlan();
   }
 
+  logout(){
+    localStorage.removeItem('guide_id');
+    localStorage.removeItem('guide_name');
+    this.snackBar.open('Logged out', 'Close', { duration: 3000 });
+    this.router.navigate(['/login']);
+  }
+    /*localStorage.clear();
+    this.snackBar.open('Logged out', 'Close', { duration: 3000 });
+    this.router.navigate(['/login']);*/
 
   edit_plan(id: any) {
 
