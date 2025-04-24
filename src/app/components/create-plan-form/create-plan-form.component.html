@@ -1,137 +1,137 @@
 <div class="create-plan-container">
-    <div class="form-card">
-      <div class="form-header">
-        <h2><i class="fas fa-map-marked-alt"></i> Create New Tour Plan</h2>
-        <p>Fill in the details to list your new tour experience</p>
+  <div class="form-card">
+    <div class="form-header">
+      <h2><i class="fas fa-map-marked-alt"></i> Create New Tour Plan</h2>
+      <p>Fill in the details to list your new tour experience</p>
+    </div>
+
+    <form (ngSubmit)="add_new_plan()" class="tour-form">
+      <!-- Title Field -->
+      <div class="form-group">
+        <label for="title">
+          <i class="fas fa-heading"></i> Tour Title
+          <span class="required-badge">Required</span>
+        </label>
+        <input 
+          type="text" 
+          id="title" 
+          [(ngModel)]="title"
+          name="title" 
+          required
+          placeholder="e.g. Sahara Desert Adventure">
+          <p *ngIf="titleError" class="error">Le titre est requis</p>
       </div>
-  
-      <form (ngSubmit)="add_new_plan()" class="tour-form">
-        <!-- Title Field -->
+      
+      <!-- Description Field -->
+      <div class="form-group">
+        <label for="description">
+          <i class="fas fa-align-left"></i> Detailed Description
+          <span class="required-badge">Required</span>
+        </label>
+        <textarea 
+          id="description" 
+          [(ngModel)]="description" 
+          name="description" 
+          required
+          rows="5"
+          placeholder="Describe the tour experience in detail..."></textarea>
+          <p *ngIf="descriptionError" class="error">La description est requise</p>
+      </div>
+
+      <!-- Price & Duration Row -->
+      <div class="form-row">
         <div class="form-group">
-          <label for="title">
-            <i class="fas fa-heading"></i> Tour Title
+          <label for="price">
+            <i class="fas fa-dollar-sign"></i> Price per person
             <span class="required-badge">Required</span>
           </label>
+          <div class="input-with-symbol">
+            <!--<span class="currency-symbol">$</span>>-->
+            <input 
+              type="number" 
+              id="price" 
+              [(ngModel)]="price" 
+              name="price" 
+              min="0" 
+              step="5"
+              required
+              placeholder="0.00">
+              <p *ngIf="priceError" class="error">
+                {{ !price ? 'Le prix est requis' : 'Le prix doit être positif' }}
+              </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="duration">
+            <i class="fas fa-calendar-day"></i> Duration
+            <span class="required-badge">Required</span>
+          </label>
+          <div class="input-with-suffix">
+            <input 
+              type="number" 
+              id="duration" 
+              [(ngModel)]="duration" 
+              name="duration" 
+              min="1" 
+              max="30"
+              required
+              placeholder="1">
+            <span class="input-suffix">days</span>
+            <p *ngIf="durationError" class="error">
+              {{ !duration ? 'La durée est requise' : '1-30 jours seulement' }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="form-group">
+        <label for="image">
+          <i class="fas fa-image"></i> Tour Image
+        </label>
+        <div class="image-upload-wrapper">
           <input 
             type="text" 
-            id="title" 
-            [(ngModel)]="newPlan.title"
-            name="title" 
-            required
-            placeholder="e.g. Sahara Desert Adventure">
-            <p *ngIf="titleError" class="error">Le titre est requis</p>
-        </div>
-  
-        <!-- Description Field -->
-        <div class="form-group">
-          <label for="description">
-            <i class="fas fa-align-left"></i> Detailed Description
-            <span class="required-badge">Required</span>
-          </label>
-          <textarea 
-            id="description" 
-            [(ngModel)]="newPlan.description" 
-            name="description" 
-            required
-            rows="5"
-            placeholder="Describe the tour experience in detail..."></textarea>
-            <p *ngIf="descriptionError" class="error">La description est requise</p>
-        </div>
-  
-        <!-- Price & Duration Row -->
-        <div class="form-row">
-          <div class="form-group">
-            <label for="price">
-              <i class="fas fa-dollar-sign"></i> Price per person
-              <span class="required-badge">Required</span>
-            </label>
-            <div class="input-with-symbol">
-              <!--<span class="currency-symbol">$</span>>-->
-              <input 
-                type="number" 
-                id="price" 
-                [(ngModel)]="newPlan.price" 
-                name="price" 
-                min="0" 
-                step="5"
-                required
-                placeholder="0.00">
-                <p *ngIf="priceError" class="error">
-                  {{ !newPlan.price ? 'Le prix est requis' : 'Le prix doit être positif' }}
-                </p>
-            </div>
-          </div>
-  
-          <div class="form-group">
-            <label for="duration">
-              <i class="fas fa-calendar-day"></i> Duration
-              <span class="required-badge">Required</span>
-            </label>
-            <div class="input-with-suffix">
-              <input 
-                type="number" 
-                id="duration" 
-                [(ngModel)]="newPlan.duration" 
-                name="duration" 
-                min="1" 
-                max="30"
-                required
-                placeholder="1">
-              <span class="input-suffix">days</span>
-              <p *ngIf="durationError" class="error">
-                {{ !newPlan.duration ? 'La durée est requise' : '1-30 jours seulement' }}
-              </p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Image Upload -->
-        <div class="form-group">
-          <label for="image">
-            <i class="fas fa-image"></i> Tour Image
-          </label>
-          <div class="image-upload-wrapper">
-            <input 
-              type="text" 
-              id="image" 
-              [(ngModel)]="newPlan.image" 
-              name="image" 
-              placeholder="Paste image URL or upload">
-            <button type="button" class="upload-btn">
-              <i class="fas fa-cloud-upload-alt"></i> Upload
-            </button>
-          </div>
-            <div *ngIf="newPlan.image" class="image-preview">
-              <img [src]="newPlan.image" alt="Tour preview">
-            </div>
-        </div>
-  
-        <!-- Form Actions -->
-        <div class="form-actions">
-          <button 
-            type="button" 
-            routerLink="/guide/dashboard" 
-            class="cancel-btn">
-            <i class="fas fa-times"></i> Cancel
-          </button>
-          <button 
-            type="submit" 
-            class="submit-btn"
-            >
-            <i class="fas fa-save"></i> Create Tour Plan
+            id="image" 
+            [(ngModel)]="image" 
+            name="image" 
+            placeholder="Paste image URL or upload">
+          <button type="button" class="upload-btn">
+            <i class="fas fa-cloud-upload-alt"></i> Upload
           </button>
         </div>
-      </form>
-    </div>
-  
-    <!-- Tour Creation Tips -->
-    <div class="creation-tips">
-      <h3><i class="fas fa-lightbulb"></i> Tour Creation Tips</h3>
-      <ul>
-        <li><i class="fas fa-check-circle"></i> Be specific about activities and inclusions</li>
-        <li><i class="fas fa-check-circle"></i> Use high-quality images (minimum 1200×800px)</li>
-        <li><i class="fas fa-check-circle"></i> Set competitive pricing based on similar tours</li>
-        <li><i class="fas fa-check-circle"></i> Highlight what makes your tour unique</li>
-      </ul>
-    </div>
+          <div *ngIf="image" class="image-preview">
+            <img [src]="image" alt="Tour preview">
+          </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button 
+          type="button" 
+          routerLink="/guide/dashboard" 
+          class="cancel-btn">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+        <button 
+          type="submit" 
+          class="submit-btn"
+          >
+          <i class="fas fa-save"></i> Create Tour Plan
+        </button>
+      </div>
+    </form>
   </div>
+
+  <!-- Tour Creation Tips -->
+  <div class="creation-tips">
+    <h3><i class="fas fa-lightbulb"></i> Tour Creation Tips</h3>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> Be specific about activities and inclusions</li>
+      <li><i class="fas fa-check-circle"></i> Use high-quality images (minimum 1200×800px)</li>
+      <li><i class="fas fa-check-circle"></i> Set competitive pricing based on similar tours</li>
+      <li><i class="fas fa-check-circle"></i> Highlight what makes your tour unique</li>
+    </ul>
+  </div>
+</div>

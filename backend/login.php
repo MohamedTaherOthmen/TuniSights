@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -47,12 +49,15 @@ try {
     }
 
     if ($user && $password == $user['password_hash']) {
+        $_SESSION['id'] = $user['id'];
         echo json_encode([
             'success' => true,
             'message' => 'Login successful',
             'user' => [
                 'email' => $user['email'],
-                'type' => $user_type
+                'id' => $user['id'],
+                'type' => $user_type,
+                'name' => $user['first_name']
             ]
         ]);
     } else {
