@@ -62,7 +62,7 @@ export class CreatePlanFormComponent {
         next: (response) => {
           if (response.success) {
             this.snackBar.open('Plan Created', 'close', { duration: 3000 });
-            this.router.navigate(['/guide/dashboard']);
+            this.router.navigate(['/guide/plans']);
           } else {
             this.snackBar.open(response.message || response.error || 'Something went wrong.', 'close', { duration: 3000 });
             this.router.navigate(['/login']);

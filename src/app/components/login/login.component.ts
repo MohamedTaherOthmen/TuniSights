@@ -41,7 +41,7 @@ export class LoginComponent {
             localStorage.setItem('guide_name', response.user.name);
           }else {
             if (response.user.type == 'tourist'){
-              this.router.navigate(['/explore']);
+              this.router.navigate(['tourist/explore']);
               localStorage.setItem('tourist_id', response.user.id);
               localStorage.setItem('tourist_name', response.user.name);
             }
