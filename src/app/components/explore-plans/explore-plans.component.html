@@ -81,7 +81,7 @@
   
       <div class="filter-group">
         <label>Max Price: ${{maxPrice}}</label>
-        <input type="range" [(ngModel)]="maxPrice" min="50" max="1000" step="50">
+        <input type="range" [(ngModel)]="maxPrice" min="5" max="1000" step="5">
       </div>
       
     </div>
@@ -111,11 +111,14 @@
       <div class="all-tours-section">
         <h2><i class="fas fa-globe-africa"></i> All Tours</h2>
         <div class="tours-grid">
-          <div *ngFor="let tour of filteredTours" class="tour-card" (click)="selectTour(tour)">
-            <img [src]="tour.image" [alt]="tour.title">
+          <div *ngFor="let tour of tours" class="tour-card" (click)="selectTour(tour)">
+            <img [src]="tour.image_url" [alt]="tour.plan_name">
             <div class="tour-info">
-              <h3>{{tour.title}}</h3>
+              <h3>{{tour.plan_name}}</h3>
               <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
+              <div class="tour-description">
+                <p>{{tour.description}}</p>
+              </div>
               <div class="tour-meta">
                 <span>${{tour.price}}</span>
                 <span>{{tour.duration}} days</span>

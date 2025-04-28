@@ -1,47 +1,56 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; // Fixed typo in import
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-explore-plans',
-  imports: [CommonModule, FormsModule, RouterModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    MatSnackBarModule
+  ],
   templateUrl: './explore-plans.component.html',
   styleUrl: './explore-plans.component.css'
 })
 export class ExplorePlansComponent {
 
-
   filter_btn_state = false;
 
-  // Sample tour data
-  tours = [
-    {
-      id: 1,
-      title: 'Sahara Adventure',
-      city: 'Merzouga',
-      price: 299,
-      duration: 3,
-      image: 'https://www.tacapes-tours.com/wp-content/uploads/2020/05/Bivouac-2-min.jpg',
-      rating: 4.8,
-      highlight: true
-    },
-    {
-      id: 2,
-      title: 'Coastal Escape',
-      city: 'Essaouira',
-      price: 199,
-      duration: 2,
-      image: 'https://lh6.googleusercontent.com/proxy/oWyxCtVTf03yt7IFbVP-We6oPmJsM17mIKg4beJUyMxN0n-Hse9o_VOU8ynAgM3eDbxTEx7cXsakww7KedkBcvhqRo_x_hZXEDF3rgal257dkvJNDC96HUnqlOFHwlL5WANEGXTKagX31Rhj8HIXCqZLragm6gyxrwjOlxlZY2d30W3cyw',
-      rating: 4.5,
-      highlight: false
-    },
-    // Add more tours...
-  ];
+  tours: any[] = []; // Initialize as empty array
 
-  // Filter/Search variables
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ){}
+
+  ngOnInit(){
+    this.http.get<any>(`http://localhost/api/showPlansForTourist.php`).subscribe({
+      next: response => {
+        if (response.success){
+          console.log('plans data fetched for this tourist !');
+          console.log(response.tours);
+          this.snackBar.open('Data fetched for this tourist', 'close', { duration: 3000 });
+          this.tours = response.tours;
+        } else {
+          console.log("couldn't data extract plans !!");
+          this.snackBar.open("Data couldn't extract for this plan !!", 'close', { duration: 3000 });
+        }
+      },
+      error: error => {
+        console.log('Error Fatal !!');
+        this.snackBar.open('Error Fatal !!', 'close', { duration : 3000 });
+      }
+    });
+  }
+
   searchTerm = '';
-  selectedCity = '';
+  selectedCity = 'All'; 
   maxPrice = 500;
   cities = ['All', 'Merzouga', 'Essaouira', 'Marrakech', 'Chefchaouen'];
 
@@ -55,8 +64,9 @@ export class ExplorePlansComponent {
   // Filter tours based on search/filters
   get filteredTours() {
     return this.tours.filter(tour => {
-      const matchesSearch = tour.title.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-                          tour.city.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const matchesSearch = 
+        (tour.plan_name?.toLowerCase().includes(this.searchTerm.toLowerCase())) || 
+        (tour.city?.toLowerCase().includes(this.searchTerm.toLowerCase()));
       const matchesCity = this.selectedCity === 'All' || tour.city === this.selectedCity;
       const matchesPrice = tour.price <= this.maxPrice;
       
@@ -66,7 +76,7 @@ export class ExplorePlansComponent {
 
   // Get highlighted tours
   get highlightedTours() {
-    return this.tours.filter(tour => tour.highlight);
+    return this.filteredTours.filter(tour => tour.highlight);
   }
 
   // Select tour for booking
@@ -83,11 +93,10 @@ export class ExplorePlansComponent {
         total: this.selectedTour.price * this.bookingDates.guests
       };
       console.log('Booking:', bookingData);
+
       // Here you would typically call a payment service
       alert(`Booked ${this.selectedTour.title} for ${this.bookingDates.guests} guests!`);
       this.selectedTour = null;
     }
   }
-
-
 }
