@@ -265,9 +265,9 @@
         font-size: 1rem;
         transition: all 0.3s ease;
         background-color: white;
-        appearance: none;
-        -webkit-appearance: none;
         -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 15px center;

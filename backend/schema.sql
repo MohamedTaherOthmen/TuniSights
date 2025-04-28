@@ -1,8 +1,8 @@
-CREATE DATABASE TuniSights;
+CREATE DATABASE IF NOT EXISTS TuniSights;
 USE TuniSights;
 
-CREATE TABLE guides (
-  id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS guides (
+  id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
@@ -16,8 +16,8 @@ CREATE TABLE guides (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE tourists (
-  id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS tourists (
+  id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
@@ -27,21 +27,12 @@ CREATE TABLE tourists (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO tourists (
-  first_name,
-  last_name,
-  email,
-  phone_number,
-  country,
-  password_hash
-) VALUES (
-  'Mohamed Taher',
-  'Othman',
-  'mohamedtaher.othman@gmail.com',
-  '+21612345678',
-  'Tunisia',
-  '12345'
+CREATE TABLE IF NOT EXISTS plans (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  plan_name VARCHAR(255),
+  description TEXT,
+  price DECIMAL(10,2),
+  guide_id INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (guide_id) REFERENCES guides(id) ON DELETE CASCADE
 );
-
-
-

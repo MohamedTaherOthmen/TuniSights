@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { GuidePlanService } from '../../services/guide-plan.service';
 
 //import { CreatePlanFormComponent } from '../create-plan-form/create-plan-form.component';
 //import { GuidePlansListService } from '../../services/guide-plans-list.service';
@@ -26,6 +27,7 @@ export class GuidePlansComponent {
     private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
+    private PlanServ: GuidePlanService
   ){ }
 
   planList: any[] = [];
@@ -70,7 +72,8 @@ export class GuidePlansComponent {
     this.router.navigate(['/login']);*/
 
   edit_plan(id: any) {
-
+    this.PlanServ.plan_id = id;
+    this.router.navigate(["/edit/plan"]); 
   }
 
   trash_btn_state = true;

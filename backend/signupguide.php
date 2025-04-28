@@ -11,16 +11,12 @@ $data = json_decode(file_get_contents("php://input"));
 
 if (
     !$data || 
-    !$data->first_name || 
-    !$data->last_name || 
-    !$data->email || 
-    !$data->phone_number || 
-    !$data->city || 
-    !$data->language || 
-    !$data->bio || 
-    !$data->experience_years || 
-    !$data->profile_picture_url || 
-    !$data->password
+    !$data->title || 
+    !$data->description || 
+    !$data->price || 
+    !$data->duration ||
+    !$data->image || 
+    !$data->status 
 ) {
     echo json_encode([
         'success' => false,
@@ -29,16 +25,12 @@ if (
     exit;
 }
 
-$first_name = $data->first_name;
-$last_name = $data->last_name;
-$email = $data->email;
-$phone_number = $data->phone_number;
-$city = $data->city;
-$language = $data->language;
-$bio = $data->bio;
-$experience_years = $data->experience_years;
-$profile_picture_url = $data->profile_picture_url;
-$password = $data->password;
+$title = $data->title;
+$description = $data->description; 
+$price = $data->price; 
+$duration = $data->duration;
+$image = $data->image; 
+$status = $data->status;
 
 //$password_hash = password_hash($password, PASSWORD_DEFAULT);
 
