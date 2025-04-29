@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router, RouterModule } from '@angular/router';
 import { GuidePlanService } from '../../services/guide-plan.service';
-import { response } from 'express';
 
 @Component({
   selector: 'app-edit-plan-form',
@@ -25,6 +24,7 @@ export class EditPlanFormComponent {
   guide_id = localStorage.getItem('guide_id');
 
   title: string = '';
+  city: string = '';
   description: string = '';
   price: any = null;
   duration: any = null;
@@ -32,6 +32,7 @@ export class EditPlanFormComponent {
   status: string = 'active';
 
   titleError = false;
+  cityError = false;
   descriptionError = false;
   priceError = false;
   durationError = false;
@@ -56,6 +57,7 @@ export class EditPlanFormComponent {
         if(response.success && response.plans.length > 0){
           const plan = response.plans[0];
           this.title = plan.plan_name;
+          this.city = plan.city;
           this.description = plan.description;
           this.price = plan.price;
           this.duration = plan.duration;
@@ -73,14 +75,16 @@ export class EditPlanFormComponent {
 
   update_plan() {
     this.titleError = !this.title;
+    this.cityError = !this.city || this.city === "";
     this.descriptionError = !this.description;
     this.priceError = !this.price || this.price < 0;
     this.durationError = !this.duration || this.duration < 1 || this.duration > 30;
     
-    if (!this.titleError && !this.descriptionError && !this.priceError && !this.durationError) {
+    if (!this.titleError && !this.cityError && !this.descriptionError && !this.priceError && !this.durationError) {
       const id_p = this.PlanServ.plan_id;
       this.http.post<any>(`http://localhost/api/editplan.php`, {
-        id_plan: id_p, 
+        id_plan: id_p,
+        city: this.city,
         title: this.title,
         description: this.description,
         price: this.price,

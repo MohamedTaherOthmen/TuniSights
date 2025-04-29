@@ -13,6 +13,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 if (
     !$data || 
     !isset($data['title']) || 
+    !isset($data['city']) ||
     !isset($data['description']) || 
     !isset($data['price']) || 
     !isset($data['duration']) || 
@@ -29,6 +30,7 @@ if (
 
 // Extract data
 $title = $data['title'];
+$city = $data['city'];
 $description = $data['description'];
 $price = $data['price'];
 $duration = $data['duration'];
@@ -37,12 +39,13 @@ $status = $data['status'];
 $id = $data['guide_id'];
 
 try {
-    $sql = "INSERT INTO plans (plan_name, description, price, duration, image_url, status, guide_id)
-            VALUES (:title, :description, :price, :duration, :image, :status, :id_guide)";
+    $sql = "INSERT INTO plans (plan_name, city, description, price, duration, image_url, status, guide_id)
+            VALUES (:title, :city, :description, :price, :duration, :image, :status, :id_guide)";
     
     $stmt = $connect->prepare($sql);
 
     $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':city', $city);
     $stmt->bindParam(':description', $description);
     $stmt->bindParam(':price', $price);
     $stmt->bindParam(':duration', $duration);

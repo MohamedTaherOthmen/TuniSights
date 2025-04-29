@@ -30,6 +30,7 @@ export class CreatePlanFormComponent {
   ) {}
 
   title: string = '';
+  city: string = '';
   description: string = '';
   price: any = null;
   duration: any = null;
@@ -37,12 +38,14 @@ export class CreatePlanFormComponent {
   status: string = 'active';
 
   titleError = false;
+  cityError = false;
   descriptionError = false;
   priceError = false;
   durationError = false;
 
   add_new_plan() {
     this.titleError = !this.title;
+    this.cityError = !this.cityError || this.city == '';
     this.descriptionError = !this.description;
     this.priceError = !this.price || this.price < 0;
     this.durationError = !this.duration || this.duration < 1 || this.duration > 30;
@@ -52,6 +55,7 @@ export class CreatePlanFormComponent {
 
       this.http.post<any>(`http://localhost/api/createplanguides.php?guide_id=${guide_id}`, {
         title: this.title,
+        city: this.city,
         description: this.description,
         price: this.price,
         duration: this.duration,

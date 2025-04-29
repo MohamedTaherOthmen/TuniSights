@@ -170,6 +170,20 @@
     border-top: 1px solid #eee;
   }
   
+  .city-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .city-label i {
+    color: #555; /* Icon color */
+    font-size: 18px; /* Icon size */
+  }
+
   .cancel-btn {
     background: #f5f5f5;
     color: #333;

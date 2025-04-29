@@ -20,7 +20,8 @@ if (!$id_plan) {
 
 try {
     $sql = "UPDATE plans 
-            SET plan_name = :title, 
+            SET plan_name = :title,
+                city = :city,
                 description = :description, 
                 price = :price, 
                 duration = :duration, 
@@ -30,6 +31,7 @@ try {
 
     $stmt = $connect->prepare($sql);
     $stmt->bindParam(':title', $input['title']);
+    $stmt->bindParam(':city', $input['city']);
     $stmt->bindParam(':description', $input['description']);
     $stmt->bindParam(':price', $input['price']);
     $stmt->bindParam(':duration', $input['duration']);

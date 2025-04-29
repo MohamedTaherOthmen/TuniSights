@@ -16,6 +16,10 @@
   height: 70px;
 }
 
+i.fas.fa-map-marker-alt {
+  color: #162938;
+}
+
 /* Branding */
 .navbar-brand {
   display: flex;

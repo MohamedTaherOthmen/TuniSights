@@ -72,6 +72,20 @@
     transition: all 0.3s ease;
   }
   
+  .city-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .city-label i {
+    color: #555; /* Icon color */
+    font-size: 18px; /* Icon size */
+  }
+
   .form-group input:focus,
   .form-group textarea:focus {
     border-color: #162938;

@@ -95,7 +95,8 @@
           <img [src]='plan.image_url' [alt]='plan.plan_name'>
           <div class="card-badge" [ngClass]="{
             'active': plan.status === 'active',
-            'draft': plan.status === 'draft'
+            'draft': plan.status === 'draft',
+            'Archive': plan.status === 'Archive'
           }">
             {{ plan.status | titlecase }}
           </div>
@@ -103,8 +104,8 @@
         
         <div class="card-body">
           <h3>{{ plan.plan_name }}</h3>
-          <p class="description">{{ plan.description }}</p>
-          
+          <p><i class="fas fa-map-marker-alt"></i> {{plan.city}}</p>
+          <p class="description">{{ plan.description }}</p>          
           <div class="plan-meta">
             <span><i class="fas fa-dollar-sign"></i> {{ plan.price }}/person</span>
             <span><i class="fas fa-calendar-day"></i> {{ plan.duration }} days</span>

@@ -93,7 +93,7 @@
         <h2><i class="fas fa-star"></i> Featured Tours</h2>
         <div class="tours-grid">
           <div *ngFor="let tour of highlightedTours" class="tour-card" (click)="selectTour(tour)">
-            <img [src]="tour.image" [alt]="tour.title">
+            <img [src]="tour.image" [alt]="tour.plan_name">
             <div class="tour-info">
               <h3>{{tour.title}}</h3>
               <p><i class="fas fa-map-marker-alt"></i> {{tour.city}}</p>
@@ -154,7 +154,5 @@
           </div>
         </div>
       </div>
-
     </div>  
-
 </div>

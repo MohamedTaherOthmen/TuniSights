@@ -22,6 +22,22 @@
           <p *ngIf="titleError" class="error">Le titre est requis</p>
       </div>
       
+      <!-- Title Field -->
+      <div class="form-group">
+        <label for="city">
+          <i class="fas fa-city"></i> City
+          <span class="required-badge">Required</span>
+        </label>
+        <input
+          type="text"
+          id="title"
+          [(ngModel)]="city"
+          name="city"
+          required
+          placeholder="e.g. Touzer">
+          <p *ngIf="cityError" class="error">La ville est obligatoire</p>
+      </div>
+
       <!-- Description Field -->
       <div class="form-group">
         <label for="description">

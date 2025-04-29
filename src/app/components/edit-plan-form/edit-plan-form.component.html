@@ -21,6 +21,22 @@
             placeholder="e.g. Sahara Desert Adventure">
             <p *ngIf="titleError" class="error">Le titre est requis</p>
         </div>
+
+        <!-- Position Field -->
+        <div class="form-group">
+          <label for="city">
+            <i class="fas fa-city"></i> City
+            <span class="required-badge">Required</span>
+          </label>
+          <input 
+            type="text" 
+            id="city" 
+            [(ngModel)]="city"
+            name="city" 
+            required
+            placeholder="">
+            <p *ngIf="cityError" class="error">La ville est Obligatoire</p>
+        </div>
         
         <!-- Description Field -->
         <div class="form-group">
