@@ -1,0 +1,126 @@
+
+<!-- NAVBAR -->
+<nav class="guide-navbar">
+    <div class="navbar-container">
+      <!-- Branding -->
+      <div class="navbar-brand">
+        <i class="fas fa-compass"></i>
+        <h2>TuniSights<span class="guide-badge">Guide</span></h2>
+      </div>
+  
+      <!-- Search & Filter -->
+      <div class="navbar-search">
+        <input type="text" placeholder="Search plans, bookings...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="filter-btn">
+          <i class="fas fa-sliders-h"></i>
+        </button>
+      </div>
+  
+      <!-- Navigation Links -->
+      <div class="navbar-links">
+        <a routerLink="/guide/dashboard" class="nav-link">
+          <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a routerLink="/guide/plans" class="nav-link">
+          <i class="fas fa-map-marked-alt"></i> Plans
+        </a>
+        <a routerLink="/guide/bookings" class="nav-link active">
+          <i class="fas fa-calendar-check"></i> Bookings
+        </a>
+      </div>
+  
+      <!-- User Menu -->
+      <div class="navbar-user">
+        <div class="notification-bell">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </div>
+        <div class="user-menu">
+          <img src="assets/guide-avatar.jpg" class="user-avatar">
+          <div class="user-dropdown">
+            <i class="fas fa-caret-down"></i>
+            <div class="dropdown-content">
+              <a routerLink="/guide/profile"><i class="fas fa-user-cog"></i> Profile</a>
+              <a routerLink="/guide/availability"><i class="fas fa-clock"></i> Availability</a>
+              <a routerLink="/guide/earnings"><i class="fas fa-chart-line"></i> Analytics</a>
+              <div class="dropdown-divider"></div>
+              <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="dashboard">
+      <!-- Header with Stats -->
+      <header class="dashboard-header">
+        <div class="header-content">
+          <h1><i class="fas fa-map-marked-alt"></i> Your Bookings</h1>
+          <p class="subtitle">Manage your active tours and create new experiences</p>
+        </div>
+  
+        <!--<button routerLink="/create/plan" class="primary-btn">
+          <i class="fas fa-plus"></i> New Plan
+        </button>-->
+      </header>
+    
+      <!-- Plans Filter -->
+      <div class="plans-filter">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search plans...">
+        </div>
+        
+        <div class="filter-options">
+          <select class="status-filter">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Draft</option>
+            <option>Archived</option>
+          </select>
+          
+          <button class="sort-btn">
+            <i class="fas fa-sort-amount-down"></i> Sort
+          </button>
+        </div>
+      </div>
+    
+      <!-- Plans Grid -->
+      <div class="plans-grid">
+        <div *ngFor="let plan of planList" class="plan-card">
+          <div class="card-image">
+            <img [src]='plan.image_url' [alt]='plan.plan_name'>
+            <div class="card-badge" [ngClass]="{
+              'active': plan.status === 'active',
+              'draft': plan.status === 'draft'
+            }">
+              {{ plan.status | titlecase }}
+            </div>
+          </div>
+          
+          <div class="card-body">
+            <h3>{{ plan.plan_name }}</h3>
+            <p class="description">{{ plan.description }}</p>
+            
+            <div class="plan-meta">
+              <span><i class="fas fa-dollar-sign"></i> {{ plan.price }}/person</span>
+              <span><i class="fas fa-calendar-day"></i> {{ plan.duration }} days</span>
+              <span><i class="fas fa-users"></i> Max {{ plan.max_people || 12 }}</span>
+            </div>
+  
+            
+          </div>
+        </div>
+      </div>
+    
+      <!-- Empty State -->
+      <div *ngIf="planList.length === 0" class="empty-state">
+        <i class="fas fa-map"></i>
+        <h3>No Tour Plans Yet</h3>
+        <p>Create your first tour plan to start attracting travelers</p>
+      </div>
+    </div>
