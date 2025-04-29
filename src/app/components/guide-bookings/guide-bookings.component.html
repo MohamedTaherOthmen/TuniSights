@@ -95,24 +95,22 @@
           <div class="card-image">
             <img [src]='plan.image_url' [alt]='plan.plan_name'>
             <div class="card-badge" [ngClass]="{
-              'active': plan.status === 'active',
-              'draft': plan.status === 'draft'
+              'confirmed': plan.BStatus === 'confirmed',
+              'pending': plan.BStatus === 'pending'
             }">
-              {{ plan.status | titlecase }}
+              {{ plan.BStatus | titlecase }}
             </div>
           </div>
           
           <div class="card-body">
             <h3>{{ plan.plan_name }}</h3>
-            <p class="description">{{ plan.description }}</p>
+            <p class="description">Note :<br/>{{ plan.notes }}</p>
             
             <div class="plan-meta">
-              <span><i class="fas fa-dollar-sign"></i> {{ plan.price }}/person</span>
-              <span><i class="fas fa-calendar-day"></i> {{ plan.duration }} days</span>
-              <span><i class="fas fa-users"></i> Max {{ plan.max_people || 12 }}</span>
+              <span><i class="fas fa-dollar-sign"></i> {{ plan.price * plan.participants }}$</span>
+              <span><i class="fas fa-calendar-day"></i> {{ plan.tour_date }}</span>
+              <span><i class="fas fa-users"></i> {{ plan.participants }}</span>
             </div>
-  
-            
           </div>
         </div>
       </div>

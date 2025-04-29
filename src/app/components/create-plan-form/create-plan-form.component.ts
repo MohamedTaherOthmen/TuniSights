@@ -45,7 +45,7 @@ export class CreatePlanFormComponent {
 
   add_new_plan() {
     this.titleError = !this.title;
-    this.cityError = !this.cityError || this.city == '';
+    this.cityError = !this.city;
     this.descriptionError = !this.description;
     this.priceError = !this.price || this.price < 0;
     this.durationError = !this.duration || this.duration < 1 || this.duration > 30;
@@ -53,7 +53,7 @@ export class CreatePlanFormComponent {
     if (!this.titleError && !this.descriptionError && !this.priceError && !this.durationError) {
       const guide_id = localStorage.getItem('guide_id');
 
-      this.http.post<any>(`http://localhost/api/createplanguides.php?guide_id=${guide_id}`, {
+      this.http.post<any>('http://localhost/api/createplanguides.php', {
         title: this.title,
         city: this.city,
         description: this.description,

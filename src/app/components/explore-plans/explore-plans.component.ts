@@ -56,9 +56,11 @@ export class ExplorePlansComponent {
 
   // Booking variables
   selectedTour: any = null;
+  id_tour: any;
   bookingDates = {
     start: '',
-    guests: 1
+    guests: 1,
+    notes: ''
   };
 
   // Filter tours based on search/filters
@@ -82,21 +84,41 @@ export class ExplorePlansComponent {
   // Select tour for booking
   selectTour(tour: any) {
     this.selectedTour = tour;
+    this.id_tour = tour.id;
   }
 
   // Process booking
-  bookTour() {
-    if (this.selectedTour && this.bookingDates.start) {
-      const bookingData = {
-        tour: this.selectedTour,
-        dates: this.bookingDates,
-        total: this.selectedTour.price * this.bookingDates.guests
-      };
-      console.log('Booking:', bookingData);
-
-      // Here you would typically call a payment service
-      alert(`Booked ${this.selectedTour.title} for ${this.bookingDates.guests} guests!`);
+  bookTour(plan: any) {
+    if (this.selectedTour && this.bookingDates.start && this.bookingDates.notes) {
+      let tourist_id = localStorage.getItem('tourist_id'); 
+      this.http.post<any>('http://localhost/api/planbook.php', {
+        dates: this.bookingDates.start,
+        participants: this.bookingDates.guests,
+        total: this.selectedTour.price * this.bookingDates.guests,
+        status: "pending",
+        tourist_id: tourist_id,
+        plan_id: this.id_tour,
+        notes: this.bookingDates.notes
+      }).subscribe({
+        next: response =>{
+          if(response.success){
+            console.log(response.message);
+            this.snackBar.open('Plan booked successfully !!', 'close', { duration: 3000 });
+            this.router.navigate(['/tourist/explore']);  
+          }else{
+            console.log(response.message);
+            this.snackBar.open('Error while reserving !!', 'close', { duration: 3000 });
+            this.router.navigate(['/tourist/explore']);
+          }
+        },
+        error: error =>{
+          console.log(error.message);
+          this.snackBar.open('Error Occuring while booking !!', 'close', { duration: 3000 });
+          this.router.navigate(['/tourist/explore']);
+        }
+      });
       this.selectedTour = null;
+      this.id_tour = null
     }
   }
 }

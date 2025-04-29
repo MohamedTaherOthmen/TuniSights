@@ -447,11 +447,11 @@
       letter-spacing: 0.5px;
     }
     
-    .card-badge.active {
+    .card-badge.confirmed {
       background-color: #10b981;
     }
     
-    .card-badge.draft {
+    .card-badge.pending {
       background-color: #f59e0b;
       color: #1e293b;
     }

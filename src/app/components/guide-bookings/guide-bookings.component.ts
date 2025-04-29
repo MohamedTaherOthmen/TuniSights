@@ -27,10 +27,10 @@ export class GuideBookingsComponent {
 
   planList: any[] = [];
 
-  loadPlan(){
+  loadBookings(){
     const guide_id = localStorage.getItem('guide_id');
     if (guide_id) {
-      this.http.get<any>(`http://localhost/api/get_guide_plans.php?guide_id=${guide_id}`)
+      this.http.get<any>(`http://localhost/api/loadbookings.php?guide_id=${guide_id}`)
         .subscribe({
           next: (response) => {
             if (response.success) {
@@ -53,7 +53,7 @@ export class GuideBookingsComponent {
   }
 
   ngOnInit():void{
-    this.loadPlan();
+    this.loadBookings();
   }
 
   logout(){
@@ -65,38 +65,5 @@ export class GuideBookingsComponent {
     /*localStorage.clear();
     this.snackBar.open('Logged out', 'Close', { duration: 3000 });
     this.router.navigate(['/login']);*/
-
-  edit_plan(id: any) {
-
-  }
-
-  trash_btn_state = true;
-
-  delete_plan(id_plan: any) {
-    const guide_id = localStorage.getItem('guide_id');
-    if (guide_id){
-      this.http.post<any>(`http://localhost/api/delete_guide_plans.php?guide_id=${guide_id}`, {
-        id : id_plan
-      }).subscribe({
-        next: (response) => {
-          if (response.success){
-            this.snackBar.open('Plan Deleted', 'close', {duration : 3000});
-            this.loadPlan();
-          } else {
-            this.snackBar.open('Error Deleting Plan', 'close', {duration : 3000});
-            console.log(response.message);
-          }
-        },
-        error: (error) => {
-          this.snackBar.open('DataBase Error, Contact us please', 'close', {duration : 3000})
-          console.log('Error deleting plans:', error.message);
-        }
-      });
-    } else {
-      console.error('Guide ID not found in localStorage');
-      this.snackBar.open('Please Login', 'close', {duration : 3000});
-      this.router.navigate(['/login']);
-    }
-  }
 
 }

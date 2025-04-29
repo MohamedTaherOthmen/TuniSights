@@ -138,19 +138,24 @@
             <label>Start Date</label>
             <input type="date" [(ngModel)]="bookingDates.start">
           </div>
-    
+
           <div class="form-group">
             <label>Number of Guests</label>
             <input type="number" [(ngModel)]="bookingDates.guests" min="1" max="10">
           </div>
-    
+
+          <div class="form-group">
+            <label>Notes for Guide (Optional)</label>
+            <input type="text" [(ngModel)]="bookingDates.notes" placeholder="Any special requests or information for your guide...">
+          </div>
+
           <div class="price-summary">
             <p>Total: <strong>${{selectedTour.price * bookingDates.guests}}</strong></p>
           </div>
-    
+
           <div class="modal-actions">
             <button (click)="selectedTour = null">Cancel</button>
-            <button (click)="bookTour()">Confirm & Pay</button>
+            <button (click)="bookTour(selectTour)">Book Now</button>
           </div>
         </div>
       </div>
