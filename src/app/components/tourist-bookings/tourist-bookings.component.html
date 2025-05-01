@@ -1,0 +1,121 @@
+
+<!-- Navigation Bar -->
+<nav class="tourist-navbar">
+    <div class="navbar-brand">
+      <i class="fas fa-suitcase-rolling"></i>
+      <h2>TuniSights<span class="tourist-badge">Tourist</span></h2>
+    </div>
+  
+    <!-- Search Field -->
+    <div class="navbar-search">
+  
+      <input type="text" placeholder="Search tours, cities...">
+      <button class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+  
+      <!-- filter button -->
+      <button >
+        <i class="fas fa-sliders-h fa-lg"></i>
+      </button>
+  
+    </div> 
+    
+    <div class="navbar-links">
+      <a routerLink="/tourist/dashboard" class="nav-link">
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a routerLink="/tourist/bookings" class="nav-link">
+        <i class="fas fa-calendar-check"></i> My Bookings
+      </a>
+      <a routerLink="/tourist/wishlist" class="nav-link">
+        <i class="fas fa-heart"></i> Wishlist
+      </a>
+    </div>
+    
+    <div class="navbar-user">
+      <div class="user-dropdown">
+        <button class="user-btn">
+          <i class="fas fa-user-circle"></i> My Profile
+        </button>
+        <div class="dropdown-content">
+          <a routerLink="/tourist/profile"><i class="fas fa-user"></i> Profile</a>
+          <a routerLink="/tourist/settings"><i class="fas fa-cog"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a routerLink="/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+      <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="dashboard">
+      <!-- Header with Stats -->
+      <header class="dashboard-header">
+        <div class="header-content">
+          <h1><i class="fas fa-map-marked-alt"></i> Your Bookings</h1>
+          <p class="subtitle">Manage your active tours and create new experiences</p>
+        </div>
+  
+        <!--<button routerLink="/create/plan" class="primary-btn">
+          <i class="fas fa-plus"></i> New Plan
+        </button>-->
+      </header>
+    
+      <!-- Plans Filter -->
+      <div class="plans-filter">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search plans...">
+        </div>
+        
+        <div class="filter-options">
+          <select class="status-filter">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Draft</option>
+            <option>Archived</option>
+          </select>
+          
+          <button class="sort-btn">
+            <i class="fas fa-sort-amount-down"></i> Sort
+          </button>
+        </div>
+      </div>
+    
+      <!-- Plans Grid -->
+      <div class="plans-grid">
+        <div *ngFor="let plan of planList" class="plan-card">
+          <div class="card-image">
+            <img [src]='plan.image_url' [alt]='plan.plan_name'>
+            <div class="card-badge" [ngClass]="{
+              'confirmed': plan.BStatus === 'confirmed',
+              'pending': plan.BStatus === 'pending'
+            }">
+              {{ plan.BStatus | titlecase }}
+            </div>
+          </div>
+          
+          <div class="card-body">
+            <h3>{{ plan.plan_name }}</h3>
+            <p class="description">Note :<br/>{{ plan.notes }}</p>
+            
+            <div class="plan-meta">
+              <span><i class="fas fa-dollar-sign"></i> {{ plan.price * plan.participants }}$</span>
+              <span><i class="fas fa-calendar-day"></i> {{ plan.tour_date }}</span>
+              <span><i class="fas fa-users"></i> {{ plan.participants }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Empty State -->
+      <div *ngIf="planList.length === 0" class="empty-state">
+        <i class="fas fa-map"></i>
+        <h3>No Tour Plans Yet</h3>
+        <p>Create your first tour plan to start attracting travelers</p>
+      </div>
+    </div>
