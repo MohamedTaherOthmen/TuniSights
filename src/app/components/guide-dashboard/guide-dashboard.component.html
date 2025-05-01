@@ -71,9 +71,9 @@
       </div>
       <div class="stat-content">
         <h3>Total Earnings</h3>
-        <p class="stat-value">$2,450</p>
+        <p class="stat-value">${{ earnings }}</p>
         <p class="stat-change positive">
-          <i class="fas fa-arrow-up"></i> 12% from last month
+          <i class="fas fa-arrow-up"></i> {{ increaseEarningsP }}% from last month
         </p>
       </div>
     </div>
@@ -85,9 +85,9 @@
       </div>
       <div class="stat-content">
         <h3>Upcoming Tours</h3>
-        <p class="stat-value">8</p>
+        <p class="stat-value">{{ upcomingTours }}</p>
         <p class="stat-change">
-          <i class="fas fa-circle"></i> 2 start tomorrow
+          <i class="fas fa-circle"></i> {{ TomorrowTours }} start tomorrow
         </p>
       </div>
     </div>
@@ -99,7 +99,7 @@
       </div>
       <div class="stat-content">
         <h3>Average Rating</h3>
-        <p class="stat-value">4.8</p>
+        <p class="stat-value">{{ rating }}</p>
         <div class="rating-stars">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
@@ -117,9 +117,9 @@
       </div>
       <div class="stat-content">
         <h3>Total Bookings</h3>
-        <p class="stat-value">42</p>
+        <p class="stat-value">{{ TotalBooking }}</p>
         <p class="stat-change positive">
-          <i class="fas fa-arrow-up"></i> 5 new this week
+          <i class="fas fa-arrow-up"></i> {{ WeekBookings }} new this week
         </p>
       </div>
     </div>

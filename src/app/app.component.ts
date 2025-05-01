@@ -4,7 +4,7 @@ import { GuideSignupComponent } from "./components/guide-signup/guide-signup.com
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, GuideSignupComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

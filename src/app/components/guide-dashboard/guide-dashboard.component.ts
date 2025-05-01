@@ -11,6 +11,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-guide-dashboard',
+  standalone: true,
   imports: [
     FormsModule,
     CommonModule,
@@ -26,10 +27,45 @@ export class GuideDashboardComponent {
     private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar
-  ){ }
+  ){}
 
   ngOnInit(): void {
+    this.LoadStatus();
     this.checkAuthentication();
+  }
+
+  earnings: number = 0;
+  upcomingTours: number = 0;
+  TomorrowTours: number = 0;
+  rating: number = 0.0;
+  TotalBooking: number = 0;
+  WeekBookings: number = 0;
+  increaseEarningsP: number = 0;
+
+  private LoadStatus(){
+    let guide_id = localStorage.getItem('guide_id');
+    if (guide_id){
+      this.http.get<any>(`http://localhost/api/loadStatus.php?guide_id=${guide_id}`).subscribe({
+        next: response=>{
+          if(response.success){
+            console.log(response.stats);
+            this.TotalBooking = response.stats.TotalBookings;
+            this.earnings = response.stats.TotalEarnings;
+            this.upcomingTours = response.upComing.UpcomingTours; 
+            this.TomorrowTours = response.tomorrowTours.bookings_tomorrow;
+            this.WeekBookings = response.thisWeek.bookings_this_week;
+            this.increaseEarningsP = response.growth_percentage;
+          }else{
+            console.log(response.message);
+            this.snackBar.open('Error While Loading Status', 'close', {duration : 3000});
+          }
+        },
+        error: error=>{
+          console.log(error.message);
+          this.snackBar.open('Fatal Error !!', 'close', {duration : 3000});
+        }
+      });
+    }
   }
 
   private checkAuthentication(): void {
