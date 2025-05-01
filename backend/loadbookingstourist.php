@@ -19,14 +19,18 @@ if (!$tourist_id) {
 }
 
 try {
-    $stmt = $connect->prepare("SELECT * FROM plans");
+    $stmt = $connect->prepare("SELECT p.*, b.*, b.status as BStatus 
+                                FROM tourists t
+                                JOIN bookings b ON t.id = b.tourist_id 
+                                JOIN plans p ON b.plan_id = p.id
+                                WHERE t.id = :tourist_id");
+    $stmt->bindParam(':tourist_id', $tourist_id);
     $stmt->execute();
     $plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode([
         'success' => true,
-        'message' => "plans data is fetched succefully",
-        'tours' => $plans
+        'plans' => $plans
     ]);
 } catch (PDOException $e) {
     echo json_encode([
