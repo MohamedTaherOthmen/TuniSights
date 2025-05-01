@@ -10,6 +10,8 @@ import { ExplorePlansComponent } from './components/explore-plans/explore-plans.
 import { GuidePlansComponent } from './components/guide-plans/guide-plans.component';
 import { EditPlanFormComponent } from './components/edit-plan-form/edit-plan-form.component';
 import { GuideBookingsComponent } from './components/guide-bookings/guide-bookings.component';
+import { TouristBookingsComponent } from './components/tourist-bookings/tourist-bookings.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -27,6 +29,8 @@ export const routes: Routes = [
   { path: 'edit/plan', component: EditPlanFormComponent },
 
   { path: 'guide/bookings', component: GuideBookingsComponent },
+
+  { path: 'tourist/bookings', component: TouristBookingsComponent }
   
   //{ path: 'signup', loadComponent: () => import('./components/signup-home/signup-home.component').then(m => m.SignupHomeComponent) },
   //{ path: 'signup/tourist', loadComponent: () => import('./components/tourist-signup/tourist-signup.component').then(m => m.TouristSignupComponent) },
