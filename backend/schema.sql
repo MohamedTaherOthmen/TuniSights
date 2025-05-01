@@ -48,7 +48,7 @@ CREATE TABLE bookings (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   plan_id INT NOT NULL,
   tourist_id INT NOT NULL,
-  booking_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  booking_datebookings DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   tour_date DATE NOT NULL,
   participants INT NOT NULL DEFAULT 1,
   status ENUM('pending', 'confirmed', 'cancelled', 'completed') DEFAULT 'pending',

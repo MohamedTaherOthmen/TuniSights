@@ -18,7 +18,11 @@ if (!$guide_id) {
 }
 
 try {
-    $stmt = $connect->prepare("SELECT p.*, b.*, b.status as BStatus FROM guides g JOIN plans p ON p.guide_id = g.id JOIN bookings b ON b.plan_id = p.id WHERE g.id = :guide_id");
+    $stmt = $connect->prepare("SELECT p.*, b.*, b.status as BStatus 
+                                FROM guides g
+                                JOIN plans p ON g.id = p.guide_id
+                                JOIN bookings b ON b.plan_id = p.id
+                                WHERE g.id = :guide_id");
     $stmt->bindParam(':guide_id', $guide_id);
     $stmt->execute();
     $plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
