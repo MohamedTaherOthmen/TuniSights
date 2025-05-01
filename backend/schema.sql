@@ -61,3 +61,6 @@ CREATE TABLE bookings (
 ALTER TABLE tunisights.bookings 
 ADD COLUMN guide_id INT AFTER tourist_id,
 ADD CONSTRAINT fk_guide FOREIGN KEY (guide_id) REFERENCES guides(id);
+
+ALTER TABLE tunisights.tourists
+ADD COLUMN profile_picture_url TEXT AFTER phone_number;

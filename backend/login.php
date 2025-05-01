@@ -57,7 +57,8 @@ try {
                 'email' => $user['email'],
                 'id' => $user['id'],
                 'type' => $user_type,
-                'name' => $user['first_name']
+                'name' => $user['first_name'],
+                'user_img_url' => $user['profile_picture_url']
             ]
         ]);
     } else {
