@@ -64,6 +64,7 @@ export class GuideBookingsComponent {
   logout(){
     localStorage.removeItem('guide_id');
     localStorage.removeItem('guide_name');
+    localStorage.removeItem('guide_image_url');
     this.snackBar.open('Logged out', 'Close', { duration: 3000 });
     this.router.navigate(['/login']);
   }

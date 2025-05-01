@@ -30,11 +30,13 @@ export class TouristBookingsComponent {
   ){ }
 
   planList: any[] = [];
+  user_name: string = '';
+  profile_url: string = '';
 
   loadBookings(){
-    const guide_id = localStorage.getItem('guide_id');
-    if (guide_id) {
-      this.http.get<any>(`http://localhost/api/loadbookings.php?guide_id=${guide_id}`)
+    const tourist_id = localStorage.getItem('tourist_id');
+    if (tourist_id) {
+      this.http.get<any>(`http://localhost/api/loadbookingstourist.php?tourist_id=${tourist_id}`)
         .subscribe({
           next: (response) => {
             if (response.success) {
@@ -58,11 +60,15 @@ export class TouristBookingsComponent {
 
   ngOnInit():void{
     this.loadBookings();
+    this.profile_url = localStorage.getItem('tourist_image_url') || '';
+    this.user_name = localStorage.getItem('tourist_name') || '';
+    
   }
 
   logout(){
-    localStorage.removeItem('guide_id');
-    localStorage.removeItem('guide_name');
+    localStorage.removeItem('tourist_id');
+    localStorage.removeItem('tourist_name');
+    localStorage.removeItem('tourist_image_url');
     this.snackBar.open('Logged out', 'Close', { duration: 3000 });
     this.router.navigate(['/login']);
   }
