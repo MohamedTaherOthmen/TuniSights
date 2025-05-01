@@ -192,6 +192,15 @@
   visibility: visible;
 }
 
+.dropdown-header {
+  color: #333;
+  padding: 0.8rem 1rem;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: default;
+}
+
 .dropdown-content a {
   color: #333;
   padding: 0.8rem 1rem;
@@ -201,7 +210,8 @@
   transition: all 0.2s;
 }
 
-.dropdown-content a i {
+.dropdown-content a i,
+.dropdown-header i {
   color: #162938;
   margin-right: 10px;
   width: 18px;

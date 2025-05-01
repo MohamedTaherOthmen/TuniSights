@@ -1,56 +1,56 @@
 
 <!-- Navigation Bar -->
 <nav class="tourist-navbar">
-    <div class="navbar-brand">
-      <i class="fas fa-suitcase-rolling"></i>
-      <h2>TuniSights<span class="tourist-badge">Tourist</span></h2>
-    </div>
+  <div class="navbar-brand">
+    <i class="fas fa-suitcase-rolling"></i>
+    <h2>TuniSights<span class="tourist-badge">Tourist</span></h2>
+  </div>
+
+  <!-- Search Field -->
+  <div class="navbar-search">
+
+    <input type="text" placeholder="Search tours, cities...">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+
+    <!-- filter button -->
+    <button (click)="filter_btn_state = !filter_btn_state" [ngClass]=" { 'filter-btn-inactiv': !filter_btn_state, 'filter-btn-activ': filter_btn_state } ">
+      <i class="fas fa-sliders-h fa-lg"></i>
+    </button>
+
+  </div> 
   
-    <!-- Search Field -->
-    <div class="navbar-search">
+  <div class="navbar-links">
+    <a routerLink="/tourist/explore" class="nav-link">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a routerLink="/tourist/bookings" class="nav-link">
+      <i class="fas fa-calendar-check"></i> My Bookings
+    </a>
+    <a routerLink="/tourist/wishlist" class="nav-link">
+      <i class="fas fa-heart"></i> Wishlist
+    </a>
+  </div>
   
-      <input type="text" placeholder="Search tours, cities...">
-      <button class="search-btn">
-        <i class="fas fa-search"></i>
+  <div class="navbar-user">
+    <div class="user-dropdown">
+      <button class="user-btn">
+        <i class="fas fa-user-circle"></i> My Profile
       </button>
-  
-      <!-- filter button -->
-      <button >
-        <i class="fas fa-sliders-h fa-lg"></i>
-      </button>
-  
-    </div> 
-    
-    <div class="navbar-links">
-      <a routerLink="/tourist/explore" class="nav-link">
-        <i class="fas fa-home"></i> Home
-      </a>
-      <a routerLink="/tourist/bookings" class="nav-link">
-        <i class="fas fa-calendar-check"></i> My Bookings
-      </a>
-      <a routerLink="/tourist/wishlist" class="nav-link">
-        <i class="fas fa-heart"></i> Wishlist
-      </a>
-    </div>
-    
-    <div class="navbar-user">
-      <div class="user-dropdown">
-        <button class="user-btn">
-          <i class="fas fa-user-circle"></i> My Profile
-        </button>
-        <div class="dropdown-content">
-          <a routerLink="/tourist/profile"><i class="fas fa-user"></i> Profile</a>
-          <a routerLink="/tourist/settings"><i class="fas fa-cog"></i> Settings</a>
-          <div class="dropdown-divider"></div>
-          <a routerLink="/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </div>
-      </div>
-      <div class="notification-bell">
-        <i class="fas fa-bell"></i>
-        <span class="badge">3</span>
+      <div class="dropdown-content">
+        <a routerLink="/tourist/profile"><i class="fas fa-user"></i> Profile</a>
+        <a routerLink="/tourist/settings"><i class="fas fa-cog"></i> Settings</a>
+        <div class="dropdown-divider"></div>
+        <a routerLink="/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>
     </div>
-  </nav>
+    <div class="notification-bell">
+      <i class="fas fa-bell"></i>
+      <span class="badge">3</span>
+    </div>
+  </div>
+</nav>
   
   <div class="dashboard">
       <!-- Header with Stats -->

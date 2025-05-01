@@ -1,0 +1,153 @@
+<!-- Navigation Bar -->
+<nav class="tourist-navbar">
+    <div class="navbar-brand">
+      <i class="fas fa-suitcase-rolling"></i>
+      <h2>TuniSights<span class="tourist-badge">Tourist</span></h2>
+    </div>
+  
+    <!-- Search Field -->
+    <div class="navbar-search">
+  
+      <input type="text" placeholder="Search tours, cities...">
+      <button class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+  
+      <!-- filter button -->
+      <button (click)="filter_btn_state = !filter_btn_state" [ngClass]=" { 'filter-btn-inactiv': !filter_btn_state, 'filter-btn-activ': filter_btn_state } ">
+        <i class="fas fa-sliders-h fa-lg"></i>
+      </button>
+  
+    </div> 
+    
+    <div class="navbar-links">
+      <a routerLink="/tourist/explore" class="nav-link">
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a routerLink="/tourist/bookings" class="nav-link">
+        <i class="fas fa-calendar-check"></i> My Bookings
+      </a>
+      <a routerLink="/tourist/wishlist" class="nav-link">
+        <i class="fas fa-heart"></i> Wishlist
+      </a>
+    </div>
+    
+    <div class="navbar-user">
+      <div class="user-dropdown">
+        <button class="user-btn">
+          <i class="fas fa-user-circle"></i> My Profile
+        </button>
+        <div class="dropdown-content">
+          <a routerLink="/tourist/profile"><i class="fas fa-user"></i> Profile</a>
+          <a routerLink="/tourist/settings"><i class="fas fa-cog"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a routerLink="/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+      <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+      </div>
+    </div>
+  </nav>
+  
+  
+  <div class="dashboard">
+      <!-- Header with Stats -->
+      <header class="dashboard-header">
+        <div class="header-content">
+          <h1><i class="fas fa-map-marked-alt"></i> Your Wishlist</h1>
+          <p class="subtitle">Browse and save your favorite travel experiences to your wishlist.</p>
+        </div>
+  
+        
+      </header>
+    
+      <!-- Plans Filter -->
+      <div class="plans-filter">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search plans...">
+        </div>
+        
+        <div class="filter-options">
+          <select class="status-filter">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Draft</option>
+            <option>Archived</option>
+          </select>
+          
+          <button class="sort-btn">
+            <i class="fas fa-sort-amount-down"></i> Sort
+          </button>
+        </div>
+      </div>
+    
+      <!-- Plans Grid -->
+      <div class="plans-grid">
+        <div *ngFor="let plan of planList" class="plan-card">
+          <div class="card-image">
+            <img [src]='plan.image_url' [alt]='plan.plan_name'>
+            <div class="card-badge" [ngClass]="{
+              'active': plan.status === 'active',
+              'draft': plan.status === 'draft',
+              'Archive': plan.status === 'Archive'
+            }">
+              {{ plan.status | titlecase }}
+            </div>
+          </div>
+          
+          <div class="card-body">
+            <h3>{{ plan.plan_name }}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> {{plan.city}}</p>
+            <p class="description">{{ plan.description }}</p>          
+            <div class="plan-meta">
+              <span><i class="fas fa-dollar-sign"></i> {{ plan.price }}/person</span>
+              <span><i class="fas fa-calendar-day"></i> {{ plan.duration }} days</span>
+              <span><i class="fas fa-users"></i> Max {{ plan.max_people || 12 }}</span>
+            </div>
+            
+            <div class="card-actions">
+              <button (click)="edit_plan(plan.id)" class="edit-btn">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+  
+              <button *ngIf="trash_btn_state" 
+                    (click)="trash_btn_state = false" 
+                    class="delete-btn">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              <!--<button (click)="delete_plan(plan.id)" class="delete-btn">
+                <i class="fas fa-trash-alt"></i>
+              </button>-->
+  
+              <!-- Delete Confirmation Section -->
+              <div *ngIf="!trash_btn_state" class="delete-confirmation">
+  
+                <span class="confirmation-text">Delete?</span>
+  
+                <button (click)="delete_plan(plan.id)" class="confirm-btn">
+                  <i class="fas fa-check"></i>
+                </button>
+  
+                <button (click)="trash_btn_state = true" class="cancel-btn">
+                  <i class="fas fa-times"></i>
+                </button>
+  
+              </div>
+              
+            </div>
+  
+            
+          </div>
+        </div>
+      </div>
+    
+      <!-- Empty State -->
+      <div *ngIf="planList.length === 0" class="empty-state">
+        <i class="fas fa-map"></i>
+        <h3>No Tour Plans Yet</h3>
+        <p>Create your first tour plan to start attracting travelers</p>
+      </div>
+    </div>

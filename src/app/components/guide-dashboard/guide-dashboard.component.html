@@ -42,14 +42,18 @@
         <div class="user-dropdown">
           <i class="fas fa-caret-down"></i>
           <div class="dropdown-content">
-            <a><i class="fas fa-user"></i>Mr. {{ user_name }}</a>
-            <a routerLink="/guide/profile"><i class="fas fa-user-cog"></i> Settings</a>
+            <div class="dropdown-header">
+              <i class="fas fa-user"></i>{{ user_name }}
+            </div>
             <div class="dropdown-divider"></div>
-            <a (click)=" logout() "><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a routerLink="/guide/profile"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
           </div>
         </div>
       </div>
     </div>
+
+    
   </div>
 </nav>
 

@@ -18,6 +18,11 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './tourist-bookings.component.css'
 })
 export class TouristBookingsComponent {
+
+  filter_btn_state = false;
+
+
+
   constructor(
     private http: HttpClient,
     private router: Router,

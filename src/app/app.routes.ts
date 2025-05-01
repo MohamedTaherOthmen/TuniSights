@@ -11,6 +11,7 @@ import { GuidePlansComponent } from './components/guide-plans/guide-plans.compon
 import { EditPlanFormComponent } from './components/edit-plan-form/edit-plan-form.component';
 import { GuideBookingsComponent } from './components/guide-bookings/guide-bookings.component';
 import { TouristBookingsComponent } from './components/tourist-bookings/tourist-bookings.component';
+import { TouristWishlistComponent } from './components/tourist-wishlist/tourist-wishlist.component';
 
 
 export const routes: Routes = [
@@ -30,7 +31,9 @@ export const routes: Routes = [
 
   { path: 'guide/bookings', component: GuideBookingsComponent },
 
-  { path: 'tourist/bookings', component: TouristBookingsComponent }
+  { path: 'tourist/bookings', component: TouristBookingsComponent },
+
+  { path: 'tourist/wishlist', component: TouristWishlistComponent }
   
   //{ path: 'signup', loadComponent: () => import('./components/signup-home/signup-home.component').then(m => m.SignupHomeComponent) },
   //{ path: 'signup/tourist', loadComponent: () => import('./components/tourist-signup/tourist-signup.component').then(m => m.TouristSignupComponent) },

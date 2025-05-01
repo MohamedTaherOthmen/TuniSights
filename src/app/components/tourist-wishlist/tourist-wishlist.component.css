@@ -1,278 +1,258 @@
-/* ===== GUIDE NAVBAR ===== */
-.guide-navbar {
-  background-color: #162938;
-  padding: 0 2rem;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar-container {
-  display: flex;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  height: 70px;
-}
-
-i.fas.fa-map-marker-alt {
-  color: #162938;
-}
-
-/* Branding */
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  margin-right: 2rem;
-}
-
-.navbar-brand i {
-  font-size: 1.8rem;
-  color: rgb(255, 251, 208);
-  margin-right: 12px;
-}
-
-.navbar-brand h2 {
-  color: white;
-  font-size: 1.5rem;
-  margin: 0;
-  font-weight: 600;
-}
-
-.guide-badge {
-  background-color: rgb(255, 251, 208);
-  color: #162938;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  margin-left: 8px;
-  font-weight: 700;
-}
-
-/* Search Bar */
-.navbar-search {
-  display: flex;
-  flex-grow: 1;
-  max-width: 500px;
-  margin: 0 2rem;
-}
-
-.navbar-search input {
-  flex: 1;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  font-size: 0.95rem;
-  background-color: rgba(255,255,255,0.9);
-}
-
-.search-btn, .filter-btn {
-  background-color: rgb(255, 251, 208);
-  color: #162938;
-  border: none;
-  padding: 0 1.2rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.search-btn {
-  border-radius: 0 4px 4px 0;
-}
-
-.filter-btn {
-  margin-left: 5px;
-  border-radius: 4px;
-}
-
-.search-btn:hover, .filter-btn:hover {
-  background-color: rgb(255, 253, 236);
-}
-
-/* Navigation Links */
-.navbar-links {
-  display: flex;
-  margin-right: auto;
-}
-
-.nav-link {
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
-  padding: 0.8rem 1.2rem;
-  margin: 0 5px;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  transition: all 0.2s;
-}
-
-.nav-link i {
-  margin-right: 8px;
-  font-size: 1rem;
-}
-
-.nav-link:hover {
-  color: white;
-}
-
-.nav-link.active {
-  background-color: rgba(255,255,255,0.1);
-  color: white;
-}
-
-/* User Menu */
-.navbar-user {
-  display: flex;
-  align-items: center;
-  margin-left: 1rem;
-}
-
-.notification-bell {
-  position: relative;
-  color: white;
-  font-size: 1.2rem;
-  padding: 0.8rem;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: #e74c3c;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.user-menu {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-left: 1rem;
-  border: 2px solid rgb(255, 251, 208);
-}
-
-.user-dropdown {
-  margin-left: 10px;
-  cursor: pointer;
-  position: relative;
-}
-
-.user-dropdown i {
-  color: white;
-  font-size: 1rem;
-}
-
-.dropdown-content {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: white;
-  min-width: 200px;
-  border-radius: 4px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s;
-  z-index: 1001;
-}
-
-.user-dropdown:hover .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-}
-
-.dropdown-header {
-  color: #333;
-  padding: 0.8rem 1rem;
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: default;
-}
-
-.dropdown-content a {
-  color: #333;
-  padding: 0.8rem 1rem;
-  text-decoration: none;
-  display: block;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-}
-
-.dropdown-content a i,
-.dropdown-header i {
-  color: #162938;
-  margin-right: 10px;
-  width: 18px;
-  text-align: center;
-}
-
-.dropdown-content a:hover {
-  background-color: #f5f5f5;
-  color: #162938;
-}
-
-.dropdown-divider {
-  height: 1px;
-  background-color: #eee;
-  margin: 5px 0;
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .navbar-container {
-    padding: 0 1rem;
+/* Tourist Navigation Bar */
+.tourist-navbar {
+    background: #162938; /* Your dark blue */
+    color: white;
+    padding: 15px 30px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   
-  .navbar-search {
-    margin: 0 1rem;
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
   }
-}
-
-@media (max-width: 992px) {
+  
+  .navbar-brand i {
+    font-size: 1.8rem;
+    color: rgb(255, 251, 208);
+    margin-right: 12px;
+  }
+  
+  .navbar-brand h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  .tourist-badge {
+    background-color: rgb(255, 251, 208);
+    color: #162938;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 8px;
+    font-weight: 700;
+  }
+  
+  /* New Search Field Styles */
+  .navbar-search {
+    display: flex;
+    flex: 1;
+    max-width: 450px;
+    margin: 0 30px;
+    
+  }
+  
+  .navbar-search input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 100px 0 0 100px;
+    font-size: 1rem;
+  }
+  
+  .search-btn {
+    background-color: white;
+    border: none;
+    border-radius: 0 100px 100px 0;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #162938;
+    transition: background-color 0.3s;
+  }
+  
+  .search-btn:hover {
+    background-color: rgb(255, 251, 208);
+  }
+  
+  /* Filter Button Styles */
+  .filter-btn-inactiv {
+    background-color: transparent;
+    margin-left: 5px;
+    border: none;
+    border-radius: 100px;
+    padding: 0 22px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+  }
+  
+  .filter-btn-inactiv:hover {
+    background-color: #1E3A5A;
+  }
+  
+  .filter-btn-activ {
+    background-color: white;
+    margin-left: 5px;
+    border: none;
+    border-radius: 100px;
+    padding: 0 22px;
+    cursor: pointer;
+    color: #162938;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+  }
+  
+  .filter-btn-activ:hover {
+    background-color: rgb(214, 214, 214);
+  }
+  
+  /* Link Buttons */
+  
   .navbar-links {
-    display: none;
+    display: flex;
+    gap: 25px;
   }
   
-  .navbar-search {
-    margin-right: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-brand h2 span {
-    display: none;
-  }
-  
-  .navbar-search {
-    margin-left: auto;
+  .nav-link {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
   }
   
-  .guide-badge {
+  .nav-link:hover {
+    cursor: pointer;
+    color: white;
+  }
+  
+  .navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .user-dropdown {
+    position: relative;
     display: inline-block;
   }
-}
-
-
-
-
-
-/* ===== Base Styles ===== */
+  
+  .user-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+  }
+  
+  .user-btn:hover {
+    color: rgb(255, 251, 208);
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    min-width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    z-index: 1001;
+  }
+  
+  .user-dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .dropdown-content a {
+    color: #333;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  
+  .dropdown-content a i {
+    color: #162938;
+    margin-right: 10px;
+    width: 18px;
+    text-align: center;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #162938;
+  }
+  
+  .dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+  }
+  
+  .notification-bell {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff0000;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .navbar-links {
+      gap: 15px;
+    }
+    
+    .nav-link span {
+      display: none;
+    }
+    
+    .user-btn span {
+      display: none;
+    }
+  
+    .navbar-brand h2 span {
+      display: none;
+    }
+    
+    .navbar-search {
+      margin-left: auto;
+    }
+    
+    .guide-badge {
+      display: inline-block;
+    }
+  }
+    
+ /* ===== Base Styles ===== */
 .dashboard {
     padding: 2rem;
     background-color: rgb(255, 251, 208);
