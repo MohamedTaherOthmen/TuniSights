@@ -26,7 +26,9 @@ export class GuideBookingsComponent {
   ){ }
 
   planList: any[] = [];
-
+  user_name: string = '';
+  profile_url: string = '';
+  
   loadBookings(){
     const guide_id = localStorage.getItem('guide_id');
     if (guide_id) {
@@ -54,6 +56,9 @@ export class GuideBookingsComponent {
 
   ngOnInit():void{
     this.loadBookings();
+    this.profile_url = localStorage.getItem('guide_image_url') || '';
+    this.user_name = localStorage.getItem('guide_name') || '';
+
   }
 
   logout(){

@@ -32,28 +32,27 @@
         </a>
       </div>
   
-      <!-- User Menu -->
-      <div class="navbar-user">
-        <div class="notification-bell">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">3</span>
-        </div>
-        <div class="user-menu">
-          <img src="assets/guide-avatar.jpg" class="user-avatar">
-          <div class="user-dropdown">
-            <i class="fas fa-caret-down"></i>
-            <div class="dropdown-content">
-              <a routerLink="/guide/profile"><i class="fas fa-user-cog"></i> Profile</a>
-              <a routerLink="/guide/availability"><i class="fas fa-clock"></i> Availability</a>
-              <a routerLink="/guide/earnings"><i class="fas fa-chart-line"></i> Analytics</a>
-              <div class="dropdown-divider"></div>
-              <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </div>
+    <!-- User Menu -->
+    <div class="navbar-user">
+      <div class="notification-bell">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">3</span>
+      </div>
+      <div class="user-menu">
+        <img [src]="profile_url" class="user-avatar">
+        <div class="user-dropdown">
+          <i class="fas fa-caret-down"></i>
+          <div class="dropdown-content">
+            <a><i class="fas fa-user"></i>Mr. {{ user_name }}</a>
+            <a routerLink="/guide/profile"><i class="fas fa-user-cog"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
           </div>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
   
   <div class="dashboard">
       <!-- Header with Stats -->

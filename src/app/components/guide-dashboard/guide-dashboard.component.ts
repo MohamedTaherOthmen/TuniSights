@@ -29,11 +29,8 @@ export class GuideDashboardComponent {
     private snackBar: MatSnackBar
   ){}
 
-  ngOnInit(): void {
-    this.LoadStatus();
-    this.checkAuthentication();
-  }
-
+  user_name: string = '';
+  profile_url: string = '';
   earnings: number = 0;
   upcomingTours: number = 0;
   TomorrowTours: number = 0;
@@ -41,6 +38,14 @@ export class GuideDashboardComponent {
   TotalBooking: number = 0;
   WeekBookings: number = 0;
   increaseEarningsP: number = 0;
+
+  ngOnInit(): void {
+    this.LoadStatus();
+    this.checkAuthentication();
+    this.profile_url = localStorage.getItem('guide_image_url') || '';
+    this.user_name = localStorage.getItem('guide_name') || '';
+  }
+
 
   private LoadStatus(){
     let guide_id = localStorage.getItem('guide_id');
@@ -79,8 +84,8 @@ export class GuideDashboardComponent {
   logout(): void {
     localStorage.removeItem('guide_id');
     localStorage.removeItem('guide_name');
+    localStorage.removeItem('guide_image_url');
     this.snackBar.open('Logged out', 'Close', { duration: 3000 });
     this.router.navigate(['/login']);
   }
-
 }

@@ -350,6 +350,15 @@
   color: #28a745;
 }
 
+.stat-change.negative {
+  color: #dc3545;
+}
+
+.stat-change.neutral {
+  color: #6c757d;
+  opacity: 0.8;
+}
+
 .rating-stars {
   color: #ffc107;
   font-size: 1rem;

@@ -38,13 +38,12 @@
         <span class="notification-badge">3</span>
       </div>
       <div class="user-menu">
-        <img src="" class="user-avatar">
+        <img [src]="profile_url" class="user-avatar">
         <div class="user-dropdown">
           <i class="fas fa-caret-down"></i>
           <div class="dropdown-content">
-            <a routerLink="/guide/profile"><i class="fas fa-user-cog"></i> Profile</a>
-            <a routerLink="/guide/availability"><i class="fas fa-clock"></i> Availability</a>
-            <a routerLink="/guide/earnings"><i class="fas fa-chart-line"></i> Analytics</a>
+            <a><i class="fas fa-user"></i>Mr. {{ user_name }}</a>
+            <a routerLink="/guide/profile"><i class="fas fa-user-cog"></i> Settings</a>
             <div class="dropdown-divider"></div>
             <a (click)=" logout() "><i class="fas fa-sign-out-alt"></i> Logout</a>
           </div>
@@ -72,8 +71,11 @@
       <div class="stat-content">
         <h3>Total Earnings</h3>
         <p class="stat-value">${{ earnings }}</p>
-        <p class="stat-change positive">
-          <i class="fas fa-arrow-up"></i> {{ increaseEarningsP }}% from last month
+        <p class="stat-change" [ngClass]="{
+          'positive': increaseEarningsP > 0,
+          'negative': increaseEarningsP < 0}">
+            <i class="fas" [class.fa-arrow-up]="increaseEarningsP >= 0" [class.fa-arrow-down]="increaseEarningsP < 0"></i>
+            {{ increaseEarningsP }}% from last month
         </p>
       </div>
     </div>
@@ -118,9 +120,15 @@
       <div class="stat-content">
         <h3>Total Bookings</h3>
         <p class="stat-value">{{ TotalBooking }}</p>
-        <p class="stat-change positive">
-          <i class="fas fa-arrow-up"></i> {{ WeekBookings }} new this week
-        </p>
+        <p class="stat-change" 
+            [ngClass]="{
+              'positive': WeekBookings > 0
+            }">
+            <i class="fas" 
+              [class.fa-arrow-up]="WeekBookings > 0" 
+              [class.fa-minus]="WeekBookings === 0"></i>
+            {{ WeekBookings }} new this week
+          </p>
       </div>
     </div>
   </div>

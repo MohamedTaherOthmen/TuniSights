@@ -35,15 +35,18 @@ export class LoginComponent {
       next : response =>{
         if (response.success){
           this.snackBar.open('Welcome to TuniSights ', 'thanks !', {duration: 3000});
+          console.log(response.user);
           if (response.user.type == 'guide'){
             this.router.navigate(['/guide/dashboard']);
             localStorage.setItem('guide_id', response.user.id);
             localStorage.setItem('guide_name', response.user.name);
+            localStorage.setItem('guide_image_url', response.user.user_img_url);
           }else {
             if (response.user.type == 'tourist'){
               this.router.navigate(['tourist/explore']);
               localStorage.setItem('tourist_id', response.user.id);
               localStorage.setItem('tourist_name', response.user.name);
+              localStorage.setItem('tourist_image_url', response.user.user_img_url);
             }
           }
         }else{

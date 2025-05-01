@@ -31,6 +31,8 @@ export class GuidePlansComponent {
   ){ }
 
   planList: any[] = [];
+  user_name: string = '';
+  profile_url: string = '';
 
   loadPlan(){
     const guide_id = localStorage.getItem('guide_id');
@@ -59,6 +61,8 @@ export class GuidePlansComponent {
 
   ngOnInit():void{
     this.loadPlan();
+    this.profile_url = localStorage.getItem('guide_image_url') || '';
+    this.user_name = localStorage.getItem('guide_name') || '';
   }
 
   logout(){
