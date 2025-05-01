@@ -21,7 +21,10 @@ export class ExplorePlansComponent {
 
   filter_btn_state = false;
 
-  tours: any[] = []; // Initialize as empty array
+  tours: any[] = [];
+  user_name: string = '';
+  profile_url: string = '';
+
 
   constructor(
     private http: HttpClient,
@@ -30,23 +33,38 @@ export class ExplorePlansComponent {
   ){}
 
   ngOnInit(){
-    this.http.get<any>(`http://localhost/api/showPlansForTourist.php`).subscribe({
-      next: response => {
-        if (response.success){
-          console.log('plans data fetched for this tourist !');
-          console.log(response.tours);
-          this.snackBar.open('Data fetched for this tourist', 'close', { duration: 3000 });
-          this.tours = response.tours;
-        } else {
-          console.log("couldn't data extract plans !!");
-          this.snackBar.open("Data couldn't extract for this plan !!", 'close', { duration: 3000 });
+    this.checkAuthentication();
+    this.profile_url = localStorage.getItem('tourist_image_url') || '';
+    this.user_name = localStorage.getItem('tourist_name')|| '';
+    let tourist_id = localStorage.getItem('tourist_id');
+    if (tourist_id){
+      this.http.get<any>(`http://localhost/api/showPlansForTourist.php?tourist_id=${tourist_id}`).subscribe({
+        next: response => {
+          if (response.success){
+            console.log('plans data fetched for this tourist !');
+            console.log(response.tours);
+            this.snackBar.open('Data fetched for this tourist', 'close', { duration: 3000 });
+            this.tours = response.tours;
+          } else {
+            console.log("couldn't data extract plans !!");
+            this.snackBar.open("Data couldn't extract for this plan !!", 'close', { duration: 3000 });
+          }
+        },
+        error: error => {
+          console.log('Error Fatal !!');
+          this.snackBar.open('Error Fatal !!', 'close', { duration : 3000 });
+          this.router.navigate(['/login']);
         }
-      },
-      error: error => {
-        console.log('Error Fatal !!');
-        this.snackBar.open('Error Fatal !!', 'close', { duration : 3000 });
-      }
-    });
+      });
+    }
+  }
+
+  private checkAuthentication(): void {
+    const tourist_id = localStorage.getItem('tourist_id');
+    if (!tourist_id) {
+      this.snackBar.open('Please login first', 'Close', { duration: 3000 });
+      this.router.navigate(['/login']);
+    }
   }
 
   searchTerm = '';
@@ -91,34 +109,44 @@ export class ExplorePlansComponent {
   bookTour(plan: any) {
     if (this.selectedTour && this.bookingDates.start && this.bookingDates.notes) {
       let tourist_id = localStorage.getItem('tourist_id'); 
-      this.http.post<any>('http://localhost/api/planbook.php', {
-        dates: this.bookingDates.start,
-        participants: this.bookingDates.guests,
-        total: this.selectedTour.price * this.bookingDates.guests,
-        status: "pending",
-        tourist_id: tourist_id,
-        plan_id: this.id_tour,
-        notes: this.bookingDates.notes
-      }).subscribe({
-        next: response =>{
-          if(response.success){
-            console.log(response.message);
-            this.snackBar.open('Plan booked successfully !!', 'close', { duration: 3000 });
-            this.router.navigate(['/tourist/explore']);  
-          }else{
-            console.log(response.message);
-            this.snackBar.open('Error while reserving !!', 'close', { duration: 3000 });
+      if(tourist_id){
+        this.http.post<any>('http://localhost/api/planbook.php', {
+          dates: this.bookingDates.start,
+          participants: this.bookingDates.guests,
+          total: this.selectedTour.price * this.bookingDates.guests,
+          status: "pending",
+          tourist_id: tourist_id,
+          plan_id: this.id_tour,
+          notes: this.bookingDates.notes
+        }).subscribe({
+          next: response =>{
+            if(response.success){
+              console.log(response.message);
+              this.snackBar.open('Plan booked successfully !!', 'close', { duration: 3000 });
+              this.router.navigate(['/tourist/explore']);  
+            }else{
+              console.log(response.message);
+              this.snackBar.open('Error while reserving !!', 'close', { duration: 3000 });
+              this.router.navigate(['/tourist/explore']);
+            }
+          },
+          error: error =>{
+            console.log(error.message);
+            this.snackBar.open('Error Occuring while booking !!', 'close', { duration: 3000 });
             this.router.navigate(['/tourist/explore']);
           }
-        },
-        error: error =>{
-          console.log(error.message);
-          this.snackBar.open('Error Occuring while booking !!', 'close', { duration: 3000 });
-          this.router.navigate(['/tourist/explore']);
-        }
-      });
-      this.selectedTour = null;
-      this.id_tour = null
+        });
+        this.selectedTour = null;
+        this.id_tour = null
+      }
     }
+  }
+ 
+  logout(): void{
+    localStorage.removeItem('tourist_id');
+    localStorage.removeItem('tourist_name');
+    localStorage.removeItem('tourist_image_url');
+    this.snackBar.open('Logged out', 'Close', { duration: 3000 });
+    this.router.navigate(['/login']);
   }
 }

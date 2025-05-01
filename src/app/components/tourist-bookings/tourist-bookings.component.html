@@ -15,9 +15,9 @@
       </button>
   
       <!-- filter button -->
-      <button >
-        <i class="fas fa-sliders-h fa-lg"></i>
-      </button>
+    <button class='filter-btn-inactiv'>
+      <i class="fas fa-sliders-h fa-lg"></i>
+    </button>
   
     </div> 
     
@@ -28,7 +28,7 @@
       <a routerLink="/tourist/bookings" class="nav-link">
         <i class="fas fa-calendar-check"></i> My Bookings
       </a>
-      <a routerLink="/tourist/wishlist" class="nav-link">
+      <a routerLink="/tourist/wishçlist" class="nav-link">
         <i class="fas fa-heart"></i> Wishlist
       </a>
     </div>
@@ -42,7 +42,7 @@
           <a routerLink="/tourist/profile"><i class="fas fa-user"></i> Profile</a>
           <a routerLink="/tourist/settings"><i class="fas fa-cog"></i> Settings</a>
           <div class="dropdown-divider"></div>
-          <a routerLink="/login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
       </div>
       <div class="notification-bell">
