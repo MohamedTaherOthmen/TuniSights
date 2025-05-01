@@ -36,9 +36,9 @@ export class TouristWishlistComponent {
 
 
   loadPlan(){
-    const guide_id = localStorage.getItem('guide_id');
+    const guide_id = localStorage.getItem('tourist_id');
     if (guide_id) {
-      this.http.get<any>(`http://localhost/api/get_guide_plans.php?guide_id=${guide_id}`)
+      this.http.get<any>(`http://localhost/api/whishlistplans.php?tourist_id=${guide_id}`)
         .subscribe({
           next: (response) => {
             if (response.success) {
@@ -55,7 +55,7 @@ export class TouristWishlistComponent {
         });
     } else {
       console.error('Guide ID not found in localStorage');
-      this.snackBar.open('Please Login aasba', 'close', {duration : 3000});
+      this.snackBar.open('Please Login', 'close', {duration : 3000});
       this.router.navigate(['/login']);
     }
   }
@@ -67,19 +67,15 @@ export class TouristWishlistComponent {
   }
 
   logout(){
-    localStorage.removeItem('guide_id');
-    localStorage.removeItem('guide_name');
+    localStorage.removeItem('tourist_id');
+    localStorage.removeItem('tourist_name');
+    localStorage.removeItem('tourist_image_url');
     this.snackBar.open('Logged out', 'Close', { duration: 3000 });
     this.router.navigate(['/login']);
   }
     /*localStorage.clear();
     this.snackBar.open('Logged out', 'Close', { duration: 3000 });
     this.router.navigate(['/login']);*/
-
-  edit_plan(id: any) {
-    this.PlanServ.plan_id = id;
-    this.router.navigate(["/edit/plan"]); 
-  }
 
   trash_btn_state = true;
 
@@ -105,7 +101,7 @@ export class TouristWishlistComponent {
       });
     } else {
       console.error('Guide ID not found in localStorage');
-      this.snackBar.open('Please Login', 'close', {duration : 3000});
+      this.snackBar.open('Please Login first', 'close', {duration : 3000});
       this.router.navigate(['/login']);
     }
   }

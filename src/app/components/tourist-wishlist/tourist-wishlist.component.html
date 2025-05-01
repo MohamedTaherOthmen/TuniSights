@@ -106,9 +106,8 @@
               <span><i class="fas fa-dollar-sign"></i> {{ plan.price }}/person</span>
               <span><i class="fas fa-calendar-day"></i> {{ plan.duration }} days</span>
               <span><i class="fas fa-users"></i> Max {{ plan.max_people || 12 }}</span>
-            </div>
-            
-            <div class="card-actions">
+          </div>
+            <!--<div class="card-actions">
               <button (click)="edit_plan(plan.id)" class="edit-btn">
                 <i class="fas fa-edit"></i> Edit
               </button>
@@ -118,11 +117,9 @@
                     class="delete-btn">
                 <i class="fas fa-trash-alt"></i>
               </button>
-              <!--<button (click)="delete_plan(plan.id)" class="delete-btn">
+              <button (click)="delete_plan(plan.id)" class="delete-btn">
                 <i class="fas fa-trash-alt"></i>
-              </button>-->
-  
-              <!-- Delete Confirmation Section -->
+              </button>
               <div *ngIf="!trash_btn_state" class="delete-confirmation">
   
                 <span class="confirmation-text">Delete?</span>
@@ -134,10 +131,8 @@
                 <button (click)="trash_btn_state = true" class="cancel-btn">
                   <i class="fas fa-times"></i>
                 </button>
-  
               </div>
-              
-            </div>
+            </div>-->
   
             
           </div>
