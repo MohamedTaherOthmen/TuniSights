@@ -54,7 +54,7 @@ export class GuidePlansComponent {
         });
     } else {
       console.error('Guide ID not found in localStorage');
-      this.snackBar.open('Please Login aasba', 'close', {duration : 3000});
+      this.snackBar.open('Please Login first', 'close', {duration : 3000});
       this.router.navigate(['/login']);
     }
   }

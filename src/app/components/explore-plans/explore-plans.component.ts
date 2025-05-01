@@ -26,6 +26,7 @@ export class ExplorePlansComponent {
   profile_url: string = '';
 
 
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -57,6 +58,10 @@ export class ExplorePlansComponent {
         }
       });
     }
+  }
+
+  add_wishlisht(plan_id: any){
+
   }
 
   private checkAuthentication(): void {
