@@ -2,5 +2,5 @@
     $host = 'localhost';
     $dbname = 'tunisights';
     $username = 'root';
-    $password = 'mohamed';
+    $password = 'Moh@medoth1234567890';
 ?>

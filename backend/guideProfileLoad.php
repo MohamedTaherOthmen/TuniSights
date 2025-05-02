@@ -9,7 +9,7 @@ require './connection.php';
 session_start();
 
 // 1 for test purposes :
-$guide_id = $_SESSION['guide_id'] ?? $_GET['guide_id'] ?? 1;
+$guide_id = $_SESSION['guide_id'] ?? $_GET['guide_id'] ?? null;
 
 if (!$guide_id) {
     echo json_encode([
