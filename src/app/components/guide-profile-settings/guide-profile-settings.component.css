@@ -7,6 +7,13 @@
     top: 0;
     z-index: 1000;
   }
+  /* aucun text ne soit en dehors du champ du text */
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  
   
   .navbar-container {
     display: flex;

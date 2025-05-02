@@ -21,9 +21,30 @@ export class ExplorePlansComponent {
 
   filter_btn_state = false;
 
+  searchTerm = '';
+  selectedCity = 'All'; 
+  maxPrice = 500;
+  cities: string[] = [
+    'Tunis', 'Sfax', 'Sousse', 'Kairouan', 'Bizerte',
+    'Gabès', 'Ariana', 'Gafsa', 'Monastir', 'Ben Arous',
+    'Kasserine', 'Médenine', 'Nabeul', 'Tataouine', 'Béja',
+    'Jendouba', 'El Kef', 'Mahdia', 'Sidi Bouzid', 'Tozeur',
+    'Kebili', 'Zaghouan', 'Siliana', 'Manouba',
+    'Other'
+  ];
+
   tours: any[] = [];
   user_name: string = '';
   profile_url: string = '';
+
+  // Booking variables
+  selectedTour: any = null;
+  id_tour: any;
+  bookingDates = {
+    start: '',
+    guests: 1,
+    notes: ''
+  };
 
 
 
@@ -72,19 +93,6 @@ export class ExplorePlansComponent {
     }
   }
 
-  searchTerm = '';
-  selectedCity = 'All'; 
-  maxPrice = 500;
-  cities = ['All', 'Merzouga', 'Essaouira', 'Marrakech', 'Chefchaouen'];
-
-  // Booking variables
-  selectedTour: any = null;
-  id_tour: any;
-  bookingDates = {
-    start: '',
-    guests: 1,
-    notes: ''
-  };
 
   // Filter tours based on search/filters
   get filteredTours() {

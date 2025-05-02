@@ -13,7 +13,8 @@ import { GuideBookingsComponent } from './components/guide-bookings/guide-bookin
 import { TouristBookingsComponent } from './components/tourist-bookings/tourist-bookings.component';
 import { TouristWishlistComponent } from './components/tourist-wishlist/tourist-wishlist.component';
 import { GuideProfileSettingsComponent } from './components/guide-profile-settings/guide-profile-settings.component';
-import { GuideProfileEditComponent } from './components/guide-profile-edit/guide-profile-edit.component';
+import { GuideProfileEditComponent } from './guide-profile-edit/guide-profile-edit.component';
+
 
 
 export const routes: Routes = [
