@@ -146,6 +146,22 @@ input::placeholder, textarea::placeholder {
   background: #1E3A5A;
 }
 
+.cancel-btn {
+  background: #696969;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  opacity: 0.9;
+}
+
 .form-links {
   display: flex;
   flex-direction: column;

@@ -61,8 +61,8 @@
       <!-- Header with Stats -->
       <header class="dashboard-header">
         <div class="header-content">
-          <h1><i class="fas fa-map-marked-alt"></i> Your Bookings</h1>
-          <p class="subtitle">Manage your active tours and create new experiences</p>
+          <h1><i class="fas fa-calendar-check"></i> Your Bookings</h1>
+          <p class="subtitle">View and manage your confirmed tours, and ensure every journey runs smoothly.</p>
         </div>
   
         <!--<button routerLink="/create/plan" class="primary-btn">
@@ -119,8 +119,8 @@
     
       <!-- Empty State -->
       <div *ngIf="planList.length === 0" class="empty-state">
-        <i class="fas fa-map"></i>
-        <h3>No Tour Plans Yet</h3>
-        <p>Create your first tour plan to start attracting travelers</p>
+        <i class="fas fa-calendar-times"></i>
+        <h3>No Bookings Yet</h3>
+        <p>You haven’t received any tour bookings yet. Once travelers book your plans, they’ll appear here.</p>
       </div>
     </div>

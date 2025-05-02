@@ -117,11 +117,14 @@
 
 .navbar-links {
   display: flex;
-  gap: 25px;
+  gap: 15px;
 }
 
 .nav-link {
   color: rgba(255,255,255,0.8);
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -131,6 +134,11 @@
 
 .nav-link:hover {
   cursor: pointer;
+  color: white;
+}
+
+.nav-link.active {
+  background-color: rgba(255,255,255,0.1);
   color: white;
 }
 
