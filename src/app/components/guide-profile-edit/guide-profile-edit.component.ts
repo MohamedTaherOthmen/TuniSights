@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
-import { Route, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -50,7 +51,6 @@ export class GuideProfileEditComponent {
 
   //initialise error variables
   inputsError = {
-
     first_nameError: false,
     last_nameError: false,
     emailError: false,
@@ -60,13 +60,78 @@ export class GuideProfileEditComponent {
     bioError: false,
     passwordError: false,
     confirm_passwordError: false
-
   }
 
   constructor(
     private route: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private http: HttpClient
   ){}
+
+  loadInfos(){
+    const guide_id = localStorage.getItem('guide_id');
+    this.http.get<any>(`http://localhost/api/guideProfileLoad.php?guide_id=${guide_id}`,
+      
+    ).subscribe({
+      next: response => {
+        if (response.success){
+          console.log(response.infos);
+          this.first_name = response.infos.first_name;
+          this.last_name = response.infos.last_name;
+          this.email = response.infos.email;
+          this.phone_number = response.infos.phone_number;
+          this.city = response.infos.city;
+          this.language = response.infos.language_spoken;
+          this.bio = response.infos.bio;
+          this.bio = response.infos.bio;
+          this.experience_years = response.infos.experience_years;
+          this.profile_picture_url = response.infos.profile_picture_url;
+          this.password = response.infos.password_hash;
+          this.snackBar.open('Edit your Profile !', 'close', {duration : 3000});
+        }else{
+          this.snackBar.open(response.message, 'close', {duration : 3000});
+        }
+      },
+      error: error => {
+        this.snackBar.open(error.message, 'close', {duration : 3000});
+        this.route.navigate(['/login']);
+      }
+    });
+  }
+
+  ngOnInit(){
+    this.loadInfos();
+  }
+
+  updateData(){
+    const guide_id = localStorage.getItem('guide_id');
+    this.http.post<any>(`http://localhost/api/guideProfileEdit.php?guide_id=${guide_id}`,{
+      first_name: this.first_name || '',
+      last_name: this.last_name || '',
+      email: this.email || '',
+      phone_number: this.phone_number || '',
+      city: this.city || '',
+      language_spoken: this.language || '',
+      bio: this.bio || '',
+      experience_years: this.experience_years || '',
+      profile_picture_url: this.profile_picture_url || '',
+      password: this.password || ''
+    }).subscribe({
+      next: response => {
+        if (response.success){
+          this.snackBar.open('Profile Edited Succefully !! Login Again please :)', 'close', {duration : 3000});
+          this.route.navigate(['/login']);
+          this.logout();
+        }else{
+          this.snackBar.open(response.message, 'close', {duration : 3000});
+        }
+      },
+      error: error => {
+        this.snackBar.open(error.message, 'close', {duration : 3000});
+        this.route.navigate(['/login']);
+      }
+    });
+  }
 
   onSubmit() {
     //check inputs
@@ -93,9 +158,16 @@ export class GuideProfileEditComponent {
     
 
     if (!this.inputsError.first_nameError && !this.inputsError.last_nameError && !this.inputsError.emailError && !this.inputsError.phoneError  && !this.inputsError.languageError && !this.inputsError.bioError && !this.inputsError.passwordError && !this.inputsError.confirm_passwordError) {
-      
+      this.updateData();
     }
   }
+
+  logout(){
+    localStorage.removeItem('guide_id');
+    localStorage.removeItem('guide_name');
+    localStorage.removeItem('guide_image_url');
+  }
+
 }
 
 

@@ -39,6 +39,11 @@ export class GuideDashboardComponent {
   WeekBookings: number = 0;
   increaseEarningsP: number = 0;
 
+  onRefresh(){
+    this.LoadStatus();
+    this.checkAuthentication();
+  }
+
   ngOnInit(): void {
     this.LoadStatus();
     this.checkAuthentication();
@@ -53,7 +58,6 @@ export class GuideDashboardComponent {
       this.http.get<any>(`http://localhost/api/loadStatus.php?guide_id=${guide_id}`).subscribe({
         next: response=>{
           if(response.success){
-            console.log(response.stats);
             this.TotalBooking = response.stats.TotalBookings;
             this.earnings = response.stats.TotalEarnings;
             this.upcomingTours = response.upComing.UpcomingTours; 
