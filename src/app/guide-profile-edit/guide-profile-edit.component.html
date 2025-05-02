@@ -1,0 +1,199 @@
+
+<div class="signup-container">
+
+    <div class="form-box">
+  
+      <h1>Guide Edit Profile</h1>
+      <p class="subtitle">Share your expertise and guide travelers in Tunisia</p>
+  
+      <div class="tabs">
+        
+        <a routerLink="/signup" class="tab active">Edit</a>
+      </div>
+  
+      <form class="signup-form" (ngSubmit)="onSubmit()">
+        
+        <!-- Name Fields (Side by Side) -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name *</label>
+            <input 
+              type="text" 
+              id="first_name" 
+              name="first_name"
+              required
+              placeholder="Enter your first name"
+              [(ngModel)] = "first_name"
+            > 
+            <p *ngIf="inputsError.first_nameError" class="error">Please enter your first name</p>
+          </div>
+  
+          <div class="form-group">
+            <label for="last_name">Last Name *</label>
+            <input 
+              type="text" 
+              id="last_name" 
+              name="last_name" 
+              required
+              placeholder="Enter your last name"
+              [(ngModel)] = "last_name"
+            >
+            <p *ngIf="inputsError.last_nameError" class="error">Please enter your last name</p>
+          </div>
+        </div>
+  
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+            placeholder="example@domain.com"
+            [(ngModel)] = "email"
+          >
+          <p *ngIf="inputsError.emailError" class="error">
+            {{ !email ? 'Please enter your Email' : 'Please check your email format !' }}
+          </p>
+        </div>
+  
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="phone_number">Phone Number</label>
+          <input 
+            type="tel" 
+            id="phone_number" 
+            name="phone_number" 
+            placeholder="+(255) 99 999 999"
+            [(ngModel)] = "phone_number"
+          >
+          <p *ngIf="inputsError.phoneError" class="error">
+            {{ !phone_number ? 'Please enter your phone number' : 'Please check your phone number format !' }}
+          </p>
+        </div>
+  
+        <!-- City Field -->
+        <div class="form-group">
+          <label for="city">City *</label>
+          <select 
+            id="city" 
+            name="city" 
+            required
+            [(ngModel)]="city"
+          >
+            <option value="" disabled selected></option>
+            <option *ngFor="let city of cities" [value]="city">
+              {{ city }}
+            </option>
+          </select>
+          <p *ngIf="inputsError.cityError" class="error">Please select your city</p>
+        </div>
+  
+        <!-- Language Field -->
+        <div class="form-group">
+          <label for="language_spoken">Primary Language *</label>
+          <select 
+            id="language_spoken" 
+            name="language_spoken" 
+            required
+            [(ngModel)]="language"
+          >
+            <option value="" disabled selected></option>
+            <option *ngFor="let language of languages" [value]="language">
+              {{ language }}
+            </option>
+          </select>
+          <p *ngIf="inputsError.languageError" class="error">Please select your primary language</p>
+        </div>
+  
+        <!-- Bio Field -->
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea 
+            id="bio" 
+            name="bio" 
+            rows="4"
+            [(ngModel)]="bio"
+            placeholder="Tell tourists about your background, expertise, and what makes you a great guide"
+          ></textarea>
+          <p *ngIf="inputsError.bioError" class="error">
+            {{ !bio ? 'Please enter your bio' : 'Bio must be at least 100 characters long !' }}
+          </p>
+        </div>
+  
+        <!-- Experience & Profile Picture Fields (Side by Side) -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="experience_years">Years of Experience</label>
+            <input 
+              type="number" 
+              id="experience_years" 
+              name="experience_years" 
+              min="0"
+              max="50"
+              [(ngModel)]="experience_years"
+              placeholder="e.g. 3"
+            >
+          </div>
+  
+          <div class="form-group">
+            <label for="profile_picture_url">Profile Picture URL</label>
+            <input 
+              type="url" 
+              id="profile_picture_url" 
+              name="profile_picture_url"
+              [(ngModel)]='profile_picture_url'
+              placeholder="Enter a URL for your profile picture"
+            >
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <div class="password-input">
+            <label for="password">Password *</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              required
+              [(ngModel)]='password'
+            >
+          </div>
+          <p *ngIf="inputsError.passwordError" class="error">
+            {{ !password ? 'Please enter a password' : 'Password must be at least 8 characters long, include 1 uppercase (A-Z), 1 lowercase (a-z), 1 number (0-9), and 1 special character (!@#$%^&*) !' }}
+          </p>
+          <div class="hint-text">
+            Password must be at least 8 characters with uppercase, lowercase, number, and special character
+          </div>
+        </div>
+  
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <div class="password-input">
+            <label for="confirm_password">Confirm Password *</label>
+            <input 
+              type="password" 
+              id="confirm_password" 
+              name="confirm_password" 
+              required
+              [(ngModel)]='confirm_password'
+            >
+          </div>
+          <p *ngIf="inputsError.confirm_passwordError" class="error">
+            {{ !confirm_password ? 'Please confirm your password' : 'Your confirmation password must exactly match the original password !' }}
+          </p>
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">
+          <span>Modify Account</span>
+        </button>
+  
+        <div class="form-links">
+          <a routerLink="/welcome" class="link home">&larr; Back to home page</a>
+        </div>
+      </form>
+    </div>
+  </div>
