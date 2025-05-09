@@ -158,3 +158,36 @@
       <p>Create your first tour plan to start attracting travelers</p>
     </div>
   </div>
+
+  <!-- Delete Plan Confirmation Modal -->
+<div *ngIf="planToDelete && planToDelete.bookingsCount === 0" class="delete-plan-modal">
+  <div class="modal-content">
+    <h2>Cannot Delete Plan</h2>
+    
+    <div class="alert-message">
+      <p>This plan has <strong>{{planToDelete.bookingsCount}}</strong> active booking(s).</p>
+      <p>You cannot delete a plan that has existing bookings.</p>
+    </div>
+
+    <div class="modal-actions">
+      <button class="confirm-btn" (click)="closeDeleteModal()">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- If you want to keep the delete option when there are no bookings -->
+<div *ngIf="planToDelete && planToDelete.bookingsCount === 0" class="delete-plan-modal">
+  <div class="modal-content">
+    <h2>Confirm Deletion</h2>
+    
+    <div class="alert-message">
+      <p>Are you sure you want to delete this plan?</p>
+      <p>This action cannot be undone.</p>
+    </div>
+
+    <div class="modal-actions">
+      <button class="cancel-btn" (click)="closeDeleteModal()">Cancel</button>
+      <button class="confirm-btn" (click)="confirmDeletePlan(planToDelete.id)">Delete</button>
+    </div>
+  </div>
+</div>
