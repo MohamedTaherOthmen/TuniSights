@@ -19,7 +19,7 @@ if (
 ) {
     echo json_encode([
         'success' => false,
-        'message' => 'All fields are required.'
+        'message' => 'All required fields must be filled.'
     ]);
     exit;
 }
@@ -32,15 +32,30 @@ $country = $data->country;
 $password = $data->password;
 
 try {
-    $checkEmailSql = "SELECT * FROM tourists WHERE email = :email";
-    $checkStmt = $connect->prepare($checkEmailSql);
-    $checkStmt->bindParam(':email', $email);
-    $checkStmt->execute();
+    $checkTouristSql = "SELECT * FROM tourists WHERE email = :email";
+    $checkTouristStmt = $connect->prepare($checkTouristSql);
+    $checkTouristStmt->bindParam(':email', $email);
+    $checkTouristStmt->execute();
 
-    if ($checkStmt->rowCount() > 0) {
+    if ($checkTouristStmt->rowCount() > 0) {
         echo json_encode([
             'success' => false,
-            'message' => 'Email already exists.'
+            'message' => 'Tourist account already exists.',
+            'errorType' => 1
+        ]);
+        exit;
+    }
+    
+    $checkGuideSql = "SELECT * FROM guides WHERE email = :email";
+    $checkGuideStmt = $connect->prepare($checkGuideSql);
+    $checkGuideStmt->bindParam(':email', $email);
+    $checkGuideStmt->execute();
+
+    if ($checkGuideStmt->rowCount() > 0) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'You already have a guide account. Cannot sign up as both guide and tourist.',
+            'errorType' => 2
         ]);
         exit;
     }
@@ -48,7 +63,7 @@ try {
     $sql = "INSERT INTO tourists 
         (first_name, last_name, email, phone_number, country, password_hash)
         VALUES 
-        (:first_name, :last_name, :email, :phone_number, :country, :password_hash)";
+        (:first_name, :last_name, :email, :phone_number, :country, :password)";
     
     $stmt = $connect->prepare($sql);
     $stmt->bindParam(':first_name', $first_name);
@@ -56,7 +71,7 @@ try {
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':phone_number', $phone_number);
     $stmt->bindParam(':country', $country);
-    $stmt->bindParam(':password_hash', $password);
+    $stmt->bindParam(':password', $password);
 
     if ($stmt->execute()) {
         echo json_encode([

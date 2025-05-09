@@ -20,6 +20,19 @@ if (!isset($data['id'])) {
 $plan_id = $data['id'];
 
 try {
+    $stmtTestPlans = $connect->prepare("SELECT * FROM bookings WHERE id = :plan_id");
+    $stmtTestPlans->bindParam(':plan_id', $plan_id, PDO::PARAM_INT);
+    $stmtTestPlans->execute();
+
+    if ($stmtTestPlans->rowCount() > 0) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Booking already exists for this plan. You can not delete this plan.',
+            'errorType' => true
+        ]);
+        exit;
+    }
+    
     $stmt = $connect->prepare("DELETE FROM plans WHERE id = :plan_id");
     $stmt->bindParam(':plan_id', $plan_id, PDO::PARAM_INT);
 

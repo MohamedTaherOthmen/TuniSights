@@ -49,7 +49,21 @@ try {
     if ($checkStmt->rowCount() > 0) {
         echo json_encode([
             'success' => false,
-            'message' => 'Email already exists.'
+            'message' => 'Guide already exists.',
+            'errorType' => 1
+        ]);
+        exit;
+    }
+    $checkEmailSqlTourist = "SELECT * FROM tourists WHERE email = :email";
+    $checkStmtTourist = $connect->prepare($checkEmailSqlTourist);
+    $checkStmtTourist->bindParam(':email', $email);
+    $checkStmtTourist->execute();
+
+    if ($checkStmtTourist->rowCount() > 0) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Email already exists In Tourist you can not signup as both guide and tourist.',
+            'errorType' => 2
         ]);
         exit;
     }
