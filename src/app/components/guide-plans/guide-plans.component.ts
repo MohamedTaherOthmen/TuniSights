@@ -93,6 +93,11 @@ export class GuidePlansComponent {
             this.snackBar.open('Plan Deleted', 'close', {duration : 3000});
             this.loadPlan();
           } else {
+            if (response.errorType){
+              this.snackBar.open('Error Deleting Plan :  This plans is booked !', 'close', {duration : 3000});
+              this.router.navigate(['/guide-bookings']);
+              return;
+            }
             this.snackBar.open('Error Deleting Plan :  This plans is booked !', 'close', {duration : 3000});
             console.log(response.message);
           }
@@ -110,9 +115,22 @@ export class GuidePlansComponent {
   }
 
 
-  //chat popup deleteerr
-  planToDelete: any = null; // Should contain { id: number, bookingsCount: number }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Test : Model For Test :
+  planToDelete: any = null; 
   openDeleteModal(plan: any) {
     this.planToDelete = plan;
   }
@@ -122,7 +140,6 @@ export class GuidePlansComponent {
   }
 
   confirmDeletePlan(planId: number) {
-    // Call your service to delete the plan
     this.closeDeleteModal();
   }
 

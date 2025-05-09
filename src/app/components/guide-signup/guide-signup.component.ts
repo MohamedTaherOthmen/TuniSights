@@ -112,18 +112,23 @@ export class GuideSignupComponent {
         next: response => {
           if (response.success){  
             console.log(response.message);
-            this.snackBar.open('Account Created Succesfully', 'close', {duration:3000});
+            this.snackBar.open('Tourist Account Created Successfully', 'Close', {duration:3000});
             this.route.navigate(['/login']);
-          }else{
-            console.log(response.message);
-            this.snackBar.open('Error While Creating Account', 'close', {duration:3000});
-            this.route.navigate(['/signup/guide']);
+          } else {
+            if(response.errorType == 1){
+              this.snackBar.open('You already have a guide account. Cannot create both guide and tourist accounts.', 'Close', {duration: 3000});
+              this.route.navigate(['/login']);
+            }else if(response.errorType == 2){
+              this.snackBar.open('You already have a tourist account.', 'Close', {duration: 3000});
+              this.route.navigate(['/login']);
+            } else {
+              this.snackBar.open('Error creating account: ' + response.message, 'Close', {duration: 3000});
+            }
           }
         },
         error : error =>{
           console.log(error.message);
-          this.snackBar.open('Error Occured while Creating Account', 'close', {duration:3000});
-          this.route.navigate(['/signup/guide']);
+          this.snackBar.open('Network error occurred. Please try again.', 'Close', {duration:3000});
         }
       })
     }
